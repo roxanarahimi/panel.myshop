@@ -14,9 +14,9 @@ class ProductForm
             ->components([
                 Select::make('product_info_id')
                     ->label('محصول پایه')
-                    ->relationship('category', 'title')
+                    ->relationship('info', 'title')
                     ->required()
-                    ->options(fn(callable $get) => \App\Models\Category::query()
+                    ->options(fn(callable $get) => \App\Models\ProductInfo::query()
                         ->pluck('title', 'id'))
                     ->reactive() // important so options update when 'type' or 'active' changes
                     ->required()
@@ -37,6 +37,8 @@ class ProductForm
                     ->label('قیمت(اختیاری)'),
                 TextInput::make('off')
                     ->label('تخفیف(اختیاری)'),
+                TextInput::make('stock')
+                    ->label('موجودی'),
             ]);
     }
 }

@@ -19,8 +19,8 @@ use Filament\Tables\Table;
 class ProductInfoResource extends Resource
 {
     protected static ?string $model = ProductInfo::class;
-    protected static ?string $modelLabel = 'اطلاعات محصول';
-    protected static ?string $pluralModelLabel = 'اطلاعات محصولات';
+    protected static ?string $modelLabel = 'محصول پایه';
+    protected static ?string $pluralModelLabel = 'محصولات پایه';
     protected static ?int $navigationSort = 5;
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedListBullet;
 
