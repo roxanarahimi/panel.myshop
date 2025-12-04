@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('size')->nullable();
             $table->integer('price')->default(0);
             $table->integer('off')->default(0);
+            $table->integer('stock')->default(0);
+            $table->integer('sale')->default(0);
+            $table->boolean('visible')->default(0);
             $table->timestamps();
         });
     }
