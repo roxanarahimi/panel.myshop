@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('product_info_id')->constrained('product_infos')->cascadeOnDelete();
             $table->string('color')->nullable();
             $table->string('size')->nullable();
-            $table->integer('price');
+            $table->integer('price')->default(0);
             $table->integer('off')->default(0);
             $table->timestamps();
         });

@@ -22,7 +22,7 @@ class ProductResource extends Resource
     protected static ?string $modelLabel = 'محصول';
     protected static ?string $pluralModelLabel = 'محصولات';
     protected static ?int $navigationSort = 4;
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleGroup;
 
     public static function form(Schema $schema): Schema
     {
