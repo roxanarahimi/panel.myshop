@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('images');
+            $table->json('images')->nullable();
             $table->integer('price');
             $table->integer('off')->default(0);
             $table->boolean('visible')->default(0);

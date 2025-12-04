@@ -13,7 +13,7 @@ class ProductInfoForm
     {
         return $schema
             ->components([
-                FileUpload::make('image')
+                FileUpload::make('images')
                     ->label('تصاویر')
                     ->image()
                     ->multiple()
