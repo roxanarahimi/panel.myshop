@@ -36,7 +36,6 @@ class ProductInfoForm
                     ->required()
                     ->options(fn(callable $get) => \App\Models\Category::query()
 //                        ->when(1, function ($query) {
-//                            // Filter categories as needed when conditions are met
 //                            $query->where('type', 'contents')->where('visible', 1);
 //                        })
                         ->pluck('title', 'id')
