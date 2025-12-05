@@ -11,6 +11,10 @@ class EditTransaction extends EditRecord
 {
     protected static string $resource = TransactionResource::class;
 
+    public function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }
     protected function getHeaderActions(): array
     {
         return [

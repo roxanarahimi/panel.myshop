@@ -11,6 +11,10 @@ class EditCategory extends EditRecord
 {
     protected static string $resource = CategoryResource::class;
 
+    public function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }
     protected function getHeaderActions(): array
     {
         return [

@@ -9,10 +9,10 @@ class Transaction extends Model
 {
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class , 'id','user_id');
+        return $this->belongsTo(User::class ,'user_id','id' );
     }
     public function order(): BelongsTo
     {
-        return $this->belongsTo(Order::class , 'id','order_id');
+        return $this->belongsTo(Order::class , 'order_id','id');
     }
 }

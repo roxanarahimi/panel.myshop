@@ -10,7 +10,10 @@ use Filament\Resources\Pages\EditRecord;
 class EditProduct extends EditRecord
 {
     protected static string $resource = ProductResource::class;
-
+    public function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }
     protected function getHeaderActions(): array
     {
         return [

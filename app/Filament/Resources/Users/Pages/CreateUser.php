@@ -9,6 +9,10 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
+    public function getRedirectUrl(): string
+    {
+        return static::getResource()::getUrl('index');
+    }
     public function getTitle(): string
     {
         return 'ایجاد کاربر (ادمین)';
