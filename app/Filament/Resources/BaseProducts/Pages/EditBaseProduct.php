@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ProductInfos\Pages;
+namespace App\Filament\Resources\BaseProducts\Pages;
 
-use App\Filament\Resources\ProductInfos\ProductInfoResource;
+use App\Filament\Resources\BaseProducts\BaseProductResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditProductInfo extends EditRecord
+class EditBaseProduct extends EditRecord
 {
-    protected static string $resource = ProductInfoResource::class;
+    protected static string $resource = BaseProductResource::class;
 
     protected function getHeaderActions(): array
     {

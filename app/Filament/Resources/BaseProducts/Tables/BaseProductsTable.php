@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\ProductInfos\Tables;
+namespace App\Filament\Resources\BaseProducts\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -10,7 +10,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProductInfosTable
+class BaseProductsTable
 {
     public static function configure(Table $table): Table
     {
@@ -22,7 +22,7 @@ class ProductInfosTable
                     ->visibility('public')
                     ->size(50)
                     ->getStateUsing(fn($record) => $record->images)
-                    ->limit(5)// show 5 images, with +x more indicator
+                    ->limit(3)
                     ->rounded()
                     ->stacked() , // shows multiple images
 

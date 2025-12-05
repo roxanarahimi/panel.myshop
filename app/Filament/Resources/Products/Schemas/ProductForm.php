@@ -12,11 +12,11 @@ class ProductForm
     {
         return $schema
             ->components([
-                Select::make('product_info_id')
+                Select::make('base_product_id')
                     ->label('محصول پایه')
                     ->relationship('info', 'title')
                     ->required()
-                    ->options(fn(callable $get) => \App\Models\ProductInfo::query()
+                    ->options(fn(callable $get) => \App\Models\BaseProduct::query()
                         ->pluck('title', 'id'))
                     ->reactive() // important so options update when 'type' or 'active' changes
                     ->required()

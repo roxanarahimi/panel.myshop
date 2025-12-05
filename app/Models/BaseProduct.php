@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ProductInfo extends Model
+class BaseProduct extends Model
 {
     public function category(): BelongsTo
     {
@@ -14,7 +14,7 @@ class ProductInfo extends Model
     }
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class , 'product_info_id','id');
+        return $this->hasMany(Product::class , 'base_product_id','id');
     }
 
     protected $casts = [

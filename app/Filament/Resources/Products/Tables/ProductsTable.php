@@ -22,7 +22,7 @@ class ProductsTable
                     ->visibility('public')
                     ->size(50)
                     ->getStateUsing(fn($record) => $record->info->images)
-                    ->limit(5)// show 5 images, with +x more indicator
+                    ->limit(3)// show 3 images, with +x more indicator
                     ->rounded()
                     ->stacked() , // shows multiple images
 

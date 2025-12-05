@@ -9,6 +9,6 @@ class Product extends Model
 {
     public function info(): BelongsTo
     {
-        return $this->belongsTo(ProductInfo::class ,'product_info_id','id' );
+        return $this->belongsTo(BaseProduct::class ,'base_product_id','id' );
     }
 }
