@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('base_products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('made_in')->nullable();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->json('images')->nullable();
             $table->integer('price');
             $table->integer('off')->default(0);
+            $table->boolean('new')->default(0);
             $table->boolean('visible')->default(0);
             $table->timestamps();
         });

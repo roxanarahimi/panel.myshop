@@ -24,11 +24,9 @@ class ProductForm
                     ->preload(),
                 TextInput::make('color')
                     ->label('رنگ')
-                    ->columnStart(1)
-                    ->required(),
+                    ->columnStart(1),
                 TextInput::make('size')
-                    ->label('سایز')
-                    ->required(),
+                    ->label('سایز'),
 //                TextInput::make('dimensions')
 //                    ->label('اندازه ها')
 //                    ->required(),
