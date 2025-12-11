@@ -21,12 +21,43 @@ Route::controller(App\Http\Controllers\ClientSideController::class)->group(funct
 });
 
 Route::controller(App\Http\Controllers\UserController::class)->group(function () {
-    Route::get('/get/contents/{id}', 'contents');
-    Route::get('/get/content/{slug}', 'content');
-    Route::get('/get/banners', 'banners');
-    Route::get('/search', 'search');
+
+    Route::post('/user/otp', 'otp');
+    Route::post('/user/verify', 'verify');//=>login
+    Route::post('/get/user', 'user');//=>info, orders, addresses,cart
+
+    Route::post('/update/user', 'user');//=>mobile
+    Route::post('/store/address', 'storeAddress');
+    Route::post('/update/address', 'updateAddress');
 
 
 });
+
+Route::controller(App\Http\Controllers\ShopController::class)->group(function () {
+
+    Route::get('/products', 'products');//where: categories, stock, off---- sort: new,sale,price
+    Route::get('/product/{slug}', 'product');
+
+    Route::post('/update/cart', 'updateCart');//user_id,p_id,quantity
+    Route::post('/empty/cart', 'emptyCart');//user_id
+
+    Route::post('/pay/cart', 'payCart');//user_id
+
+    Route::post('/payment', 'payment');
+
+
+    Route::post('/update/order', 'updateOrder');
+
+
+
+});
+Route::controller(App\Http\Controllers\ReportController::class)->group(function () {
+
+    Route::get('/report/users', 'users');
+    Route::get('/report/transactions', 'transactions');
+    Route::get('/report/sale', 'sale');
+    Route::get('/report/stock', 'stock');
+});
+
 
 
