@@ -45,18 +45,8 @@ Route::controller(App\Http\Controllers\ShopController::class)->group(function ()
 
     Route::post('/payment', 'payment');
 
-
     Route::post('/update/order', 'updateOrder');
 
-
-
-});
-Route::controller(App\Http\Controllers\ReportController::class)->group(function () {
-
-    Route::get('/report/users', 'users');
-    Route::get('/report/transactions', 'transactions');
-    Route::get('/report/sale', 'sale');
-    Route::get('/report/stock', 'stock');
 });
 
 

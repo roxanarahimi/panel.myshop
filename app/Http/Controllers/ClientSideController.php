@@ -20,8 +20,8 @@ class ClientSideController extends Controller
 {
     public function products(){
         try {
-            $productss = BaseProduct::orderByDesc('created_at')->where('visible',1)->get();
-            return response(BaseProductResource::collection($productss),200);
+            $products = BaseProduct::orderByDesc('created_at')->where('visible',1)->get();
+            return response(BaseProductResource::collection($products),200);
         }catch(\Exception $exception){
             return $exception;
         }
