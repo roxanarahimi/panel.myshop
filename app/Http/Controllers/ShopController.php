@@ -66,7 +66,7 @@ class ShopController extends Controller
                     $query->where('category_id', $request['category_id']);
                 });
             }
-            $products = $products->take(12)->get();
+            $products = $products->take(4)->get();
 
             return response(ProductResource::collection($products), 200);
         } catch (\Exception $exception) {
