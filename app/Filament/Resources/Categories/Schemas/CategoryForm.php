@@ -20,7 +20,7 @@ class CategoryForm
                     ->visibility('public')
                     ->imageEditor()
                     ->imageEditorEmptyFillColor('transparent')
-                    ->circleCropper()
+//                    ->circleCropper()
                     ->imageCropAspectRatio('1:1'),
                 TextInput::make('title')
                     ->label('عنوان')

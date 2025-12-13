@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 
 class BannersTable
@@ -14,7 +15,12 @@ class BannersTable
     {
         return $table
             ->columns([
-                //
+                ImageColumn::make('image')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->getStateUsing(function ($record): string {
+                        return $record->image;
+                    }),
             ])
             ->filters([
                 //

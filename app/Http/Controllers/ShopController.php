@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BaseProductResource;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\BaseProduct;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    public function categories(Request $request)
+    { //where: categories, stock, off---- sort: new,sale,price
+        try {
+            $categories = Category::orderBy('id')->where('visible', 1)->get();
+            return response(CategoryResource::collection($categories), 200);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
     public function products(Request $request)
     { //where: categories, stock, off---- sort: new,sale,price
         try {
@@ -43,4 +56,22 @@ class ShopController extends Controller
             return $exception;
         }
     }
+
+    public function specialProducts(Request $request)
+    {
+        try {
+            $products = Product::orderByDesc('id'); //special?
+            if($request['category_id']) {
+                $products = $products->WhereHas('info', function ($query) use ($request) {
+                    $query->where('category_id', $request['category_id']);
+                });
+            }
+            $products = $products->take(12)->get();
+
+            return response(ProductResource::collection($products), 200);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
+
 }

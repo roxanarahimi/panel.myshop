@@ -35,7 +35,9 @@ Route::controller(App\Http\Controllers\UserController::class)->group(function ()
 
 Route::controller(App\Http\Controllers\ShopController::class)->group(function () {
 
+    Route::get('/categories', 'categories');
     Route::get('/products', 'products');//where: categories, stock, off---- sort: new,sale,price
+    Route::get('/special/products', 'specialProducts');
     Route::get('/product/{slug}', 'product');
 
     Route::post('/update/cart', 'updateCart');//user_id,p_id,quantity
