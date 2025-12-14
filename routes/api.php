@@ -12,10 +12,11 @@ use Illuminate\Http\Request;
 //})->where('any', '.*');
 
 Route::controller(App\Http\Controllers\ClientSideController::class)->group(function () {
-    Route::get('/get/contents/{id}', 'contents');
-    Route::get('/get/content/{slug}', 'content');
+    Route::get('/get/products/{id}', 'productByCat');
+    Route::get('/get/product/{slug}', 'product');
     Route::get('/get/banners', 'banners');
     Route::get('/search', 'search');
+    Route::get('/special/products', 'specialProducts');
 
 
 });
@@ -37,7 +38,6 @@ Route::controller(App\Http\Controllers\ShopController::class)->group(function ()
 
     Route::get('/categories', 'categories');
     Route::get('/products', 'products');//where: categories, stock, off---- sort: new,sale,price
-    Route::get('/special/products', 'specialProducts');
     Route::get('/product/{slug}', 'product');
 
     Route::post('/update/cart', 'updateCart');//user_id,p_id,quantity

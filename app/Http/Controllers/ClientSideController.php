@@ -35,11 +35,28 @@ class ClientSideController extends Controller
             return $exception;
         }
     }
+
+    public function specialProducts(Request $request)
+    {
+        try {
+            $products = BaseProduct::orderByDesc('id'); //special?
+            if($request['category_id']) {
+                $products = $products->where('category_id', $request['category_id']);
+            }
+            $products = $products->take(4)->get();
+
+            return response(BaseProductResource::collection($products), 200);
+        } catch (\Exception $exception) {
+            return $exception;
+        }
+    }
+
     public function product($slug)
     {
         try {
-            $products = Content::where('visible',1)->where('slug',$slug)->orWhere('slug_en',$slug)->first();
-            return response(new BaseProductResource($products),200);
+            $title = str_replace('_',' ',$slug);
+            $product = BaseProduct::where('visible',1)->where('title',$title)->first();
+            return response(new BaseProductResource($product),200);
         }catch(\Exception $exception){
             return $exception;
         }

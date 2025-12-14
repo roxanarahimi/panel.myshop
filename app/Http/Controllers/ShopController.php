@@ -60,15 +60,13 @@ class ShopController extends Controller
     public function specialProducts(Request $request)
     {
         try {
-            $products = Product::orderByDesc('id'); //special?
+            $products = BaseProduct::orderByDesc('id'); //special?
             if($request['category_id']) {
-                $products = $products->WhereHas('info', function ($query) use ($request) {
-                    $query->where('category_id', $request['category_id']);
-                });
+                $products = $products->where('category_id', $request['category_id']);
             }
             $products = $products->take(4)->get();
 
-            return response(ProductResource::collection($products), 200);
+            return response(BaseProductResource::collection($products), 200);
         } catch (\Exception $exception) {
             return $exception;
         }
