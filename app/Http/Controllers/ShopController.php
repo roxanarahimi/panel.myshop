@@ -24,29 +24,29 @@ class ShopController extends Controller
     public function products(Request $request)
     { //where: categories, stock, off---- sort: new,sale,price
         try {
-            $products = BaseProduct::orderByDesc('created_at')->where('visible', 1);
+            $products = BaseProduct::orderByDesc('id');
 
-            if ($request['category_ids']) {
-                $products = $products->whereIn('category_id', $request['category_ids']);
-            }
-            if ($request['stock']) {
+//            if ($request['category_ids']) {
+//                $products = $products->whereIn('category_id', $request['category_ids']);
+//            }
+            if ($request['stock']=== true) {
                 $products = $products->whereHas('products', function ($query) use ($request) {
                     $query->where('stock', '>', 0);
                 });
             }
-            if ($request['off']) {
+            if ($request['off'] === true) {
                 $products = $products->whereHas('products', function ($query) use ($request) {
                     $query->where('off', '>', 0);
                 });
             }
-            if ($request['sale']) {
+            if ($request['sale'] === true) {
                 $products = $products->orderByDesc('sale');
             }
-            if ($request['cheap']) {
+            if ($request['cheap'] === true) {
                 $products = $products->orderBy('price');
             }
 
-            if ($request['expensive']) {
+            if ($request['expensive'] === true) {
                 $products = $products->orderByDesc('price');
             }
 
