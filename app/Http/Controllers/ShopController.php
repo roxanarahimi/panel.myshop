@@ -22,33 +22,39 @@ class ShopController extends Controller
         }
     }
     public function products(Request $request)
-    { //where: categories, stock, off---- sort: new,sale,price
+    { //where: categories, stock, off---- sort: new,sale,productsrice
         try {
+//            return $request['stock'];
             $products = BaseProduct::orderByDesc('id');
 
-//            if ($request['category_ids']) {
-//                $products = $products->whereIn('category_id', $request['category_ids']);
-//            }
-            if ($request['stock']=== true) {
-                $products = $products->whereHas('products', function ($query) use ($request) {
+            if ($request['category_ids']) {
+                $products = $products->whereIn('category_id',array_map('intval', explode(',', $request['category_ids'])) );
+            }
+            if ($request['stock'] == 'true') {
+                $products = $products->whereHas('products', function ($query) {
                     $query->where('stock', '>', 0);
                 });
             }
-            if ($request['off'] === true) {
+            if ($request['off'] == 'true') {
                 $products = $products->whereHas('products', function ($query) use ($request) {
                     $query->where('off', '>', 0);
-                });
-            }
-            if ($request['sale'] === true) {
-                $products = $products->orderByDesc('sale');
-            }
-            if ($request['cheap'] === true) {
-                $products = $products->orderBy('price');
+                })->orWhere('off', '>', 0);
             }
 
-            if ($request['expensive'] === true) {
-                $products = $products->orderByDesc('price');
+            if ($request['term']&& count_chars($request['term']>=3)) {
+                $products = $products->where('title', 'like', '%' . $request['term'] . '%');
             }
+
+//            if ($request['sort'] == 'sale') {
+//                $products = $products->orderByDesc('sale');
+//            }
+//            if ($request['sort'] == 'cheap') {
+//                $products = $products->orderBy('price');
+//            }
+//
+//            if ($request['sort'] == 'expensive') {
+//                $products = $products->orderByDesc('price');
+//            }
 
             $products = $products->paginate(12);
             return response(BaseProductResource::collection($products), 200);
