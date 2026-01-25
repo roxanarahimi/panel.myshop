@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
-    public function sendOtp(Request $request)
+    public function otp(Request $request)
     {
         try {
             $mobile = $this->faToEn($request['mobile']);
@@ -72,7 +72,7 @@ class UserController extends Controller
         }
     }
 
-    public function verifyMobile(Request $request)
+    public function verify(Request $request)
     {
         try {
             $mobile = $this->faToEn($request['mobile']);
