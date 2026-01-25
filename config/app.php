@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tehran',
 
     /*
     |--------------------------------------------------------------------------
@@ -122,5 +122,14 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    'providers' => [
+
+		Kavenegar\Laravel\ServiceProvider::class
+],
+     'aliases' => [
+
+         'Kavenegar' => Kavenegar\Laravel\Facade::class,
+],
 
 ];
