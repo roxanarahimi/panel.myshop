@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Kavenegar\KavenegarApi;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
     public function sendSms(Request $request): Response
     {
         try {
-            $api = new \Kavenegar\KavenegarApi("727842576C5A3338766E3837734E5771744351476232665A70373952744850566E2B31514C324B786969593D");
+            $api = new KavenegarApi("727842576C5A3338766E3837734E5771744351476232665A70373952744850566E2B31514C324B786969593D");
             $sender = "10005989";
             $message = $request['message'];
             $receptor = array($request['mobile']);

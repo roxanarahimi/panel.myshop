@@ -9,7 +9,7 @@
         "php": "^8.2",
         "ext-intl": "*",
         "filament/filament": "4.0",
-        "kavenegar/laravel": "*",
+        "kavenegar/php": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },
