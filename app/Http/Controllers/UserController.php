@@ -30,7 +30,6 @@ class UserController extends Controller
             Cache::put($mobile, $code, 60);
             if ($send->getStatusCode() === 200) {
                 return response(['message' => 'کد تایید ارسال شد.'], 200);
-
             } else {
                 return $send;
             }
