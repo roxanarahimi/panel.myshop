@@ -65,9 +65,6 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             return $e;
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
-            return $e;
         }
     }
 
