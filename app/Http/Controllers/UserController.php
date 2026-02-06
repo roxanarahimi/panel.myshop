@@ -63,11 +63,7 @@ class UserController extends Controller
             }
             return response($info, 200);
 
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return $e;
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
+        } catch (\Exception $e) {
             return $e;
         }
     }
