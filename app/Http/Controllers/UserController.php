@@ -59,9 +59,9 @@ class UserController extends Controller
                 ];
 
             } else {
-                $info = $result;
+                $info = ["data" =>$result];
             }
-            return response(["data" =>$info], 200);
+            return response($info, 200);
 
         } catch (\Kavenegar\Exceptions\ApiException $e) {
             // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
