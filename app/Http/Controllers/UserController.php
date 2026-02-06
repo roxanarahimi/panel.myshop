@@ -38,7 +38,7 @@ class UserController extends Controller
         }
     }
 
-    public function sendSms(Request $request): Response
+    public function sendSms(Request $request)
     {
         try {
             $api = new KavenegarApi("727842576C5A3338766E3837734E5771744351476232665A70373952744850566E2B31514C324B786969593D");
@@ -64,6 +64,9 @@ class UserController extends Controller
             return response($info, 200);
 
         } catch (\Exception $e) {
+            return $e;
+        } catch (\Kavenegar\Exceptions\HttpException $e) {
+            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
             return $e;
         }
     }
