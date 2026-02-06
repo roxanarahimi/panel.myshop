@@ -16,9 +16,9 @@ class UserController extends Controller
         try {
             $mobile = $this->faToEn($request['mobile']);
             $user = User::where('mobile', $mobile)->first();
-            if ($user && $user->role === 'admin') {
-                return response(['message' => 'این شماره موبایل قابل استفاده نیست. لطفا با شماره دیگری تلاش کنید.'], 422);
-            }
+//            if ($user && $user->role === 'admin') {
+//                return response(['message' => 'این شماره موبایل قابل استفاده نیست. لطفا با شماره دیگری تلاش کنید.'], 422);
+//            }
             $code = rand(1001, 9999);
             $text = ' به کوپابی خوش آمدید.کد تایید:' . $code;
             $sms = new Request([
