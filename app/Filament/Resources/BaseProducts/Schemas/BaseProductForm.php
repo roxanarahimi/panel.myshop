@@ -39,6 +39,16 @@ class BaseProductForm
 //                            $query->where('type', 'contents')->where('visible', 1);
 //                        })
                         ->pluck('title', 'id')
+                    )  ,
+                Select::make('brand_id')
+                    ->label('برند')
+                    ->relationship('brand', 'name')
+                    ->required()
+                    ->options(fn(callable $get) => \App\Models\Brand::query()
+//                        ->when(1, function ($query) {
+//                            $query->where('type', 'contents')->where('visible', 1);
+//                        })
+                        ->pluck('name', 'id')
                     )
                     ->reactive() // important so options update when 'type' or 'active' changes
                     ->required()

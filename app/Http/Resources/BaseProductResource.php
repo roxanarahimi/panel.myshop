@@ -34,7 +34,7 @@ class BaseProductResource extends JsonResource
             "id" => $this->id,
             "title" => $this->title,
             "slug" => str_replace(' ', '_', $this->title),
-            "made_in" => $this->made_in,
+            "brand" => $this->brand,
             "price" => $this->products->min('price'),
             "off" => $this->off,
             "stock" => $this->products->sum('stock'),

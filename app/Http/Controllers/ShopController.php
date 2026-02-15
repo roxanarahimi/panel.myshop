@@ -28,6 +28,9 @@ class ShopController extends Controller
 //            return $request['stock'];
             $products = BaseProduct::orderByDesc('id');
 
+            if ($request['brand_id']) {
+                $products = $products->where('brand_id', $request['brand_id']);
+            }
             if ($request['category_ids']) {
                 $products = $products->whereIn('category_id', array_map('intval', explode(',', $request['category_ids'])));
             }

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('base_products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('made_in')->nullable();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->json('images')->nullable();
             $table->integer('price');
             $table->integer('off')->default(0);

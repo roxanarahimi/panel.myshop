@@ -24,6 +24,7 @@ class BaseProductInfolist
 
                 TextEntry::make('title')->label('عنوان')->columnStart(1)->columnSpan(1),
                 TextEntry::make('category.title')->label('دسته بندی')->columnSpan(1),
+                TextEntry::make('brand.name')->label('برند')->columnSpan(1),
 
                 RepeatableEntry::make('products')->label('موجودی')
                     ->schema([

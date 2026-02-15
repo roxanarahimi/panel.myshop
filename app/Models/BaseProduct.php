@@ -12,6 +12,10 @@ class BaseProduct extends Model
     {
         return $this->belongsTo(Category::class ,'category_id','id');
     }
+   public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class ,'brand_id','id');
+    }
     public function sames(): HasMany
     {
         return $this->hasMany(BaseProduct::class ,'category_id','category_id')->take(4);
