@@ -43,9 +43,6 @@ class ShopController extends Controller
             if ($request['term'] && count_chars($request['term'] >= 3)) {
                 $products = $products->where('title', 'like', '%' . $request['term'] . '%');
             }
-            if ($request['brand'] && count_chars($request['brand'] >= 3)) {
-                $products = $products->where('title', 'like', '%' . $request['brand'] . '%');
-            }
 
             if ($request['off'] == 'true') {
                 $products = $products->where('off', '>', 0)->orWhereHas('products', function ($query) {
