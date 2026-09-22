@@ -16,7 +16,7 @@ class BrandForm
                     ->label('تصویر')
                     ->image()
                     ->disk('public')
-                    ->directory('img/category')
+                    ->directory('img/brand')
                     ->visibility('public')
                     ->imageEditor()
                     ->imageEditorEmptyFillColor('transparent')
