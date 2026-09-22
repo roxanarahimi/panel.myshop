@@ -12,7 +12,8 @@
         "kavenegar/php": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "pishran/zarinpal": "^4.3"
+        "pishran/zarinpal": "^4.3",
+        "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
