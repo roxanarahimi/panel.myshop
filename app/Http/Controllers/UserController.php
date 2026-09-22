@@ -79,6 +79,7 @@ class UserController extends Controller
 
 
             $array = json_decode($result, true);
+            return $array;
             if ($result) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
