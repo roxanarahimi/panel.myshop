@@ -6,7 +6,6 @@ use App\Http\Resources\AddressResource;
 use App\Http\Resources\UserResource;
 use App\Models\Address;
 use App\Models\User;
-use chillerlan\QRCode\Detector\ResultPoint;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
@@ -70,7 +69,7 @@ class UserController extends Controller
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: PN1TVeBeaAehFLJAKU4XdfpsFXsQguYfleO0bV4ceh6diTZid2hRXza3uSkBbDef'
+                    'x-api-key: LN17h7NQHKpydoGr6IYSrb5z12q0PKP9ZTbo6BFc4ZbMPv37'
                 ),
             ));
 
@@ -80,7 +79,6 @@ class UserController extends Controller
 
 
             $array = json_decode($result, true);
-            return response([$result,$array],500);
             if ($result) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
