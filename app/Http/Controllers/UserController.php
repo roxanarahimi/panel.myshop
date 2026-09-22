@@ -69,7 +69,7 @@ class UserController extends Controller
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
+                    'x-api-key: PN1TVeBeaAehFLJAKU4XdfpsFXsQguYfleO0bV4ceh6diTZid2hRXza3uSkBbDef'
                 ),
             ));
 
