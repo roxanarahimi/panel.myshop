@@ -6,6 +6,7 @@ use App\Http\Resources\AddressResource;
 use App\Http\Resources\UserResource;
 use App\Models\Address;
 use App\Models\User;
+use chillerlan\QRCode\Detector\ResultPoint;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
@@ -79,7 +80,7 @@ class UserController extends Controller
 
 
             $array = json_decode($result, true);
-            return $array;
+            return $result;
             if ($result) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
