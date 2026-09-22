@@ -21,16 +21,16 @@ class BannerForm
                     ->visibility('public')
                     ->imageEditor()
                     ->imageEditorEmptyFillColor('transparent')
-                    ->imageCropAspectRatio('1500:660'),
+                    ->imageCropAspectRatio('1000:950'),
                 TextInput::make('link')
                     ->label('لینک')
                     ->columnStart(1)->columnSpanFull(),
-                Select::make('visible')
-                    ->label('نمایش')
-                    ->options([
-                        '0'=>'بله',
-                        '1'=>'خیر'
-                    ]),
+//                Select::make('visible')
+//                    ->label('نمایش')
+//                    ->options([
+//                        '0'=>'بله',
+//                        '1'=>'خیر'
+//                    ]),
 
             ]);
     }

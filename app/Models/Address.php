@@ -9,6 +9,10 @@ class Address extends Model
 {
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class ,'id', 'user_id');
+        return $this->belongsTo(User::class ,'user_id','id' );
+    }
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class , 'city_id','id');
     }
 }

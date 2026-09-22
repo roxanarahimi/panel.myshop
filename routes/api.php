@@ -23,25 +23,33 @@ Route::controller(App\Http\Controllers\ClientSideController::class)->group(funct
 
 Route::controller(App\Http\Controllers\UserController::class)->group(function () {
 
-    Route::post('/user/otp', 'otp');
-    Route::post('/user/verify', 'verify');//=>login
-    Route::post('/get/user', 'user');//=>info, orders, addresses,cart
 
-    Route::post('/update/user', 'user');//=>mobile
+    Route::post('/mobile/otp',  'sendOtp');
+    Route::post('/mobile/verify','verifyMobile');
+
+    Route::get('/user/{id}', 'show');
+    Route::post('/update/user', 'update');
     Route::post('/store/address', 'storeAddress');
     Route::post('/update/address', 'updateAddress');
-
 
 });
 
 Route::controller(App\Http\Controllers\ShopController::class)->group(function () {
 
     Route::get('/categories', 'categories');
+    Route::get('/brands', 'brands');
     Route::get('/products', 'products');//where: categories, stock, off---- sort: new,sale,price
     Route::get('/product/{slug}', 'product');
 
-    Route::post('/update/cart', 'updateCart');//user_id,p_id,quantity
-    Route::post('/empty/cart', 'emptyCart');//user_id
+    Route::get('/provinces', 'provinces');
+    Route::get('/cities/{id}', 'cities');
+
+    Route::post('/add/to/cart', 'addToCart');//user_id,p_id,quantity
+    Route::post('/remove/from/cart', 'removeFromCart');
+    Route::post('/update/cart', 'updateCart');//cart id
+    Route::post('/empty/cart', 'emptyCart');//cart id
+
+    Route::get('/order/{code}', 'showOrder');//cart id
 
     Route::post('/pay/cart', 'payCart');//user_id
 

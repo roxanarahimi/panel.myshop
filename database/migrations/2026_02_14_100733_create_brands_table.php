@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('made_in')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

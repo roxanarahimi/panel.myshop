@@ -14,6 +14,7 @@ class OrdersTable
 {
     public static function configure(Table $table): Table
     {
+
         return $table
             ->columns([
                 TextColumn::make('user.name')->label('کاربر')
@@ -21,7 +22,20 @@ class OrdersTable
                 TextColumn::make('code')->label('شماره')->searchable(),
                 TextColumn::make('total_amount')->label('جمع فاکتور')->searchable(),
                 TextColumn::make('total_off')->label('تخفیف'),
-                TextColumn::make('amount')->label('مبلغ')->searchable(),
+                TextColumn::make('amount')->label('مبلغ نهایی')->searchable(),
+//                TextColumn::make('status')->label('وضعیت')
+//                    ->formatStateUsing(fn ($state) => switch($state->status){
+//        case 'cart':$status='سبد خرید';break;
+//        case 'payed':$status='ثبت شد';break;
+//        case 'in progress':$status='آماده سازی';break;
+//        case 'ready to send':$status='آماده ارسال';break;
+//        case 'sent':$status='ارسال شد';break;
+//        case 'delivered':$status='دریافت شد';break;
+//        case 'canceled':$status='کنسل شد';break;
+//    } return $status;)
+//                    ->sortable(),
+                TextColumn::make('status')->label('وضعیت')->searchable(),
+                TextColumn::make('payed_at')->label('تاریخ ثبت')->searchable(),
             ])
             ->filters([
                 //

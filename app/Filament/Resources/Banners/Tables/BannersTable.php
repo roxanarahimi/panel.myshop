@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BannersTable
@@ -21,12 +22,14 @@ class BannersTable
                     ->getStateUsing(function ($record): string {
                         return $record->image;
                     }),
+                TextColumn::make('text')->label('متن'),
+
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
+//                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

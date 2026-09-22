@@ -16,22 +16,29 @@ class OrderInfolist
         return $schema
             ->components([
                 TextEntry::make('code')->label('شماره سفارش')->columnStart(1)->columnSpan(1),
+                TextEntry::make('status')->label('وضعیت'),
                 TextEntry::make('user.name')->label('کابر')->columnStart(1)->columnSpan(1),
                 TextEntry::make('user.mobile')->label('شماره موبایل')->columnSpan(1),
+                TextEntry::make('address.city.province.name')->label('استان')->columnStart(1)->columnSpan(1),
+                TextEntry::make('address.city.name')->label('شهر')->columnSpan(1),
                 TextEntry::make('address.postal_code')->label('کد پستی')->columnStart(1)->columnSpan(1),
-                TextEntry::make('address.address')->label('ادرس'),
+                TextEntry::make('address.address')->label('نشانی'),
 
+                TextEntry::make('total_amount')->label('جمع کل'),
+                TextEntry::make('total_off')->label('تخفیف کل'),
+                TextEntry::make('delivery_amount')->label('هزینه ارسال'),
+                TextEntry::make('amount')->label('مبلغ نهایی'),
 
-                RepeatableEntry::make('orderItems')->label('محصولات')
+                RepeatableEntry::make('items')->label('محصولات')
                     ->schema([
-                        Grid::make(8)->schema([
+                        Grid::make(7)->schema([
                             ImageEntry::make('images')->label('تصویر')
                                 ->disk('public')->visibility('public')
                                 ->columnSpan(1)
                                 ->size(50)
                                 ->getStateUsing(fn($record) => $record->product->info->images)->columnSpan(1),
                             TextEntry::make('product')->getStateUsing(fn($record) => $record->product->info->title)->label('عنوان')->columnSpan(1),
-                            TextEntry::make('product')->getStateUsing(fn($record) => $record->product->color)->label('رنگ')->columnSpan(1),
+//                            TextEntry::make('product')->getStateUsing(fn($record) => $record->product->color)->label('رنگ')->columnSpan(1),
                             TextEntry::make('product')->getStateUsing(fn($record) => $record->product->size)->label('سایز')->columnSpan(1),
                             TextEntry::make('product')->getStateUsing(fn($record) => $record->quantity)->label('تعداد')->columnSpan(1),
                             TextEntry::make('product')->getStateUsing(fn($record) => $record->product->price ? $record->product->price : $record->product->info->price)->label('قیمت واحد')->columnSpan(1),
@@ -45,11 +52,8 @@ class OrderInfolist
                                 ) ) * $record->quantity)->label('مبلغ')->columnSpan(1),
                         ])
                     ])
-                    ->columnSpan(3),
+                    ->columnSpan(2),
 
-                TextEntry::make('total_amount')->label('جمع کل'),
-                TextEntry::make('total_off')->label('تخفیف کل'),
-                TextEntry::make('amount')->label('مبلغ نهایی'),
 
 
             ]);

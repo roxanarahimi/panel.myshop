@@ -20,23 +20,11 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'mobile' => $this->mobile,
-            'password' => $this->password,
             'role' => $this->role,
 
-            'address' => [
-                'postal_code' => $this->address?->postal_code,
-                'id' => $this->address?->address,
-                'title' => $this->address?->title
-            ],
-
-            'city' => [
-                'id' => $this->address?->city?->id,
-                'name' => $this->address?->city?->name
-            ],
-            'province' => [
-                'id' => $this->address?->city?->province->id,
-                'name' => $this->address?->city?->province->name
-            ],
+            'addresses' => AddressResource::collection($this->addresses),
+            'cart' => new OrderResource($this->cart),
+            'orders' => OrderResource::collection($this->orders),
             'created_at' => explode(' ', (new DateController())->toPersian($this->created_at))[0],
 
         ];
