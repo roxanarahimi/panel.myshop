@@ -58,7 +58,7 @@ class UserController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS =>'{
         "mobile": "'.$mobile.'",
-        "templateId": "636094",
+        "templateId": "949086",
         "parameters": [
           {
               "name":"CODE",
@@ -69,7 +69,7 @@ class UserController extends Controller
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: LN17h7NQHKpydoGr6IYSrb5z12q0PKP9ZTbo6BFc4ZbMPv37'
+                    'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
                 ),
             ));
 
