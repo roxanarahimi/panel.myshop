@@ -77,7 +77,7 @@ class UserController extends Controller
 
             curl_close($curl);
 
-            return response([$result],500);
+//            return response([$result],500);
 
             $array = json_decode($result, true);
 
@@ -88,11 +88,12 @@ class UserController extends Controller
                     "status" => $array['status'],
                     "cost" => $array['data']['cost']
                 ];
-
+                return response($info, 200);
             } else {
                 $info = $result;
+                return response($info, 500);
             }
-            return response($info, 200);
+
 
         } catch (\Kavenegar\Exceptions\ApiException $e) {
             // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
