@@ -16,6 +16,7 @@ class UsersTable
         return $table
             ->columns([
                 TextColumn::make('name')->label('نام')->searchable(),
+                TextColumn::make('mobile')->label('موبایل')->searchable(),
                 TextColumn::make('email')->label('ایمیل')->searchable(),
 
             ])
