@@ -23,5 +23,6 @@ class ProductResource extends JsonResource
             "off" => max($this->off,$this->info->off),
             "category_id" => $this->info->category_id,
         ];
+
     }
 }

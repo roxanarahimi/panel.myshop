@@ -16,5 +16,6 @@ class BannerResource extends JsonResource
     {
 
         return parent::toArray($request);
+
     }
 }

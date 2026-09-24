@@ -39,7 +39,6 @@ class OrderResource extends JsonResource
             'status' => $status,
             'payed_at' => explode(' ', (new DateController())->toPersian($this->payed_at))[0],
             'created_at' => explode(' ', (new DateController())->toPersian($this->created_at))[0],
-
         ];
     }
 }

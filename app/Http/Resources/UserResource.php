@@ -26,7 +26,6 @@ class UserResource extends JsonResource
             'cart' => new OrderResource($this->cart),
             'orders' => OrderResource::collection($this->orders),
             'created_at' => explode(' ', (new DateController())->toPersian($this->created_at))[0],
-
         ];
     }
 }

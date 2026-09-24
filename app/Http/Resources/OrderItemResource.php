@@ -22,6 +22,7 @@ class OrderItemResource extends JsonResource
             'price' =>  $this->price,
             'off' =>  $this->off,
             'quantity' =>  $this->quantity,
+
         ];
     }
 }
