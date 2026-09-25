@@ -43,6 +43,16 @@ class PaymentController extends Controller
 
     public function verifyPayment(Request $request):Response
     {
+        return response()->json([
+            'success' => true,
+            'authority' => $request->query('Authority'),
+            'status' => $request->query('Status'),
+        ], 200, [
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
+        ]);
+
         try {
 
 //        بررسی وضعیت تراکنش | Verify payment status
