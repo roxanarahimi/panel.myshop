@@ -41,41 +41,44 @@ class PaymentController extends Controller
     }
 
 
-    public function verifyPayment(Request $request): Response
+    public function verifyPayment(Request $request)
     {
-
         try {
 
-//        بررسی وضعیت تراکنش | Verify payment status
-            $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
-            $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $authority = $request->query('Authority');
+            $status = $request->query('Status');
 
+            if ($status !== 'OK') {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Payment cancelled',
+                ], 400);
+            }
 
             $response = zarinpal()
-//    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
                 ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
 
             if (!$response->success()) {
-//            return $response->error()->message();
-                return response($response->error()->message(), $response->error()->code());
-
+                return response()->json([
+                    'success' => false,
+                    'message' => $response->error()->message(),
+                    'code' => $response->error()->code(),
+                ], 400);
             }
 
-// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
-// $response->cardHash();
+            return response()->json([
+                'success' => true,
+                'reference_id' => $response->referenceId(),
+            ]);
 
-// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
-// $response->cardPan();
+        } catch (\Throwable $exception) {
 
-// پرداخت موفقیت آمیز بود
-// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
-//        return $response->referenceId();
-            return response($response->referenceId(), 200);
-        } catch (\Exception $exception) {
-            return response($exception, $exception->getCode());
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ], 500);
         }
-    }
-}
+    }}
