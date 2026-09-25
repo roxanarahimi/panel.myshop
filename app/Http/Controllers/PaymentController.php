@@ -48,11 +48,17 @@ class PaymentController extends Controller
             $authority = $request->query('Authority');
             $status = $request->query('Status');
 
-            \Log::info('Zarinpal VERIFY START', [
-                'authority' => $authority,
-                'status' => $status,
-            ]);
+            $response = zarinpal()
+                ->amount(7000)
+                ->verification()
+                ->authority($authority)
+                ->send();
 
+            \Log::info('Zarinpal VERIFY RESULT', [
+                'success' => $response->success(),
+                'error_code' => $response->error()?->code(),
+                'error_message' => $response->error()?->message(),
+            ]);
             $response = zarinpal()
                 ->amount(7000)
                 ->verification()
