@@ -22,7 +22,8 @@ class PaymentController extends Controller
             ->send();
 
         if (!$response->success()) {
-            return $response->error()->message();
+//            return $response->error()->message();
+            return $response->error();
         }
 
 // ذخیره اطلاعات در دیتابیس
