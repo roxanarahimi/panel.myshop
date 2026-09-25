@@ -48,18 +48,20 @@ class PaymentController extends Controller
             $authority = $request->query('Authority');
             $status = $request->query('Status');
 
-            if ($status !== 'OK') {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Payment cancelled',
-                ], 400);
-            }
+            \Log::info('Zarinpal VERIFY START', [
+                'authority' => $authority,
+                'status' => $status,
+            ]);
 
             $response = zarinpal()
                 ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
+
+            \Log::info('Zarinpal VERIFY RESPONSE', [
+                'response' => $response,
+            ]);
 
             if (!$response->success()) {
                 return response()->json([
@@ -75,6 +77,13 @@ class PaymentController extends Controller
             ]);
 
         } catch (\Throwable $exception) {
+
+            \Log::error('Zarinpal VERIFY EXCEPTION', [
+                'message' => $exception->getMessage(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'trace' => $exception->getTraceAsString(),
+            ]);
 
             return response()->json([
                 'success' => false,
