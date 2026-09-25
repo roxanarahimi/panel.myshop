@@ -58,7 +58,7 @@ class PaymentController extends Controller
 
             if (!$response->success()) {
 //            return $response->error()->message();
-                return response($response->error(), $response->error()->code());
+                return response($response->error()->message(), $response->error()->code());
 
             }
 
