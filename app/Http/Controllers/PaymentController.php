@@ -88,7 +88,7 @@ class PaymentController extends Controller
             return response($response->error()->message(), $response->error()->code());
 
         } catch (\Exception $exception) {
-            return $exception;
+            return response($exception, 500);
         }
     }
 }
