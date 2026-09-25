@@ -56,7 +56,7 @@ class PaymentController extends Controller
             }
 
             $response = zarinpal()
-                ->amount(70000)
+                ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
