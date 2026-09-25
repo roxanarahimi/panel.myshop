@@ -47,11 +47,11 @@ class PaymentController extends Controller
             'success' => true,
             'authority' => $request->query('Authority'),
             'status' => $request->query('Status'),
-
+        ], 200, [
             'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS',
             'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
-        ], 400);
+        ]);
 
         try {
 
