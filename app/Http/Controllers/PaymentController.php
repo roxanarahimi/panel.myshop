@@ -10,50 +10,57 @@ class PaymentController extends Controller
 {
     public function redirectToGateway(Request $request):Response
     {
-//        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
-        $order = Order::find($request['order_id']);
-        $response = zarinpal()
+        try {
+            //        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
+            $order = Order::find($request['order_id']);
+            $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount(7000) // مبلغ تراکنش $request['amount']
-            ->request()
-            ->description('transaction info order_id = '.$order['id']) // توضیحات تراکنش
-            ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
-            ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
+                ->amount(7000) // مبلغ تراکنش $request['amount']
+                ->request()
+                ->description('transaction info order_id = '.$order['id']) // توضیحات تراکنش
+                ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
+                ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
 //    ->email($request['mobile']) // ایمیل مشتری - اختیاری
-            ->send();
+                ->send();
 
-        if (!$response->success()) {
+            if (!$response->success()) {
 //            return $response->error()->message();
-            return response($response->error(), $response->error()->code());
-        }
+                return response($response->error(), $response->error()->code());
+            }
 
 // ذخیره اطلاعات در دیتابیس
 // $response->authority();
 
 // هدایت مشتری به درگاه پرداخت
 //        return $response->redirect();
-        return response(['url'=>$response->redirect()->getTargetUrl()], 200);
+            return response(['url'=>$response->redirect()->getTargetUrl()], 200);
+
+        }catch(\Exception $exception){
+            return response($exception,$exception->getCode());
+        }
     }
 
 
     public function verifyPayment(Request $request):Response
     {
+        try {
+
 //        بررسی وضعیت تراکنش | Verify payment status
-        $authority = $request['Authority']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
-        $status = $request['Status']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $authority = $request['Authority']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $status = $request['Status']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
 
-        $response = zarinpal()
+            $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount(7000)
-            ->verification()
-            ->authority($authority)
-            ->send();
+                ->amount(7000)
+                ->verification()
+                ->authority($authority)
+                ->send();
 
-        if (!$response->success()) {
+            if (!$response->success()) {
 //            return $response->error()->message();
-            return response($response->error(), $response->error()->code());
+                return response($response->error(), $response->error()->code());
 
-        }
+            }
 
 // دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
 // $response->cardHash();
@@ -64,6 +71,9 @@ class PaymentController extends Controller
 // پرداخت موفقیت آمیز بود
 // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 //        return $response->referenceId();
-        return response($response, 200);
+            return response($response, 200);
+        }catch(\Exception $exception){
+            return response($exception,$exception->getCode());
+        }
     }
 }
