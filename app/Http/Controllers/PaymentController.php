@@ -46,8 +46,8 @@ class PaymentController extends Controller
         try {
 
 //        بررسی وضعیت تراکنش | Verify payment status
-            $authority = $request->Authority;// دریافت کوئری استرینگ ارسال شده توسط زرین پال
-            $status = $request->Status;// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
 
 
             $response = zarinpal()
