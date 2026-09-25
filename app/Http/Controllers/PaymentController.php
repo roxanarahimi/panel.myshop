@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function redirectToGateway(Request $request):Response
+    public function redirectToGateway(Request $request): Response
     {
         try {
             //        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
@@ -17,7 +17,7 @@ class PaymentController extends Controller
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
                 ->amount(7000) // مبلغ تراکنش $request['amount']
                 ->request()
-                ->description('transaction info order_id = '.$order['id']) // توضیحات تراکنش
+                ->description('transaction info order_id = ' . $order['id']) // توضیحات تراکنش
                 ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
                 ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
 //    ->email($request['mobile']) // ایمیل مشتری - اختیاری
@@ -33,25 +33,25 @@ class PaymentController extends Controller
 
 // هدایت مشتری به درگاه پرداخت
 //        return $response->redirect();
-            return response(['url'=>$response->redirect()->getTargetUrl()], 200);
+            return response(['url' => $response->redirect()->getTargetUrl()], 200);
 
-        }catch(\Exception $exception){
-            return response($exception,$exception->getCode());
+        } catch (\Exception $exception) {
+            return response($exception, $exception->getCode());
         }
     }
 
 
-    public function verifyPayment(Request $request):Response
+    public function verifyPayment(Request $request): Response
     {
-        return response()->json([
+        return response([
             'success' => true,
             'authority' => $request->query('Authority'),
             'status' => $request->query('Status'),
-        ], 200, [
+
             'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => 'GET, POST, OPTIONS',
             'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
-        ]);
+        ], 400);
 
         try {
 
@@ -83,8 +83,8 @@ class PaymentController extends Controller
 // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 //        return $response->referenceId();
             return response($response, 200);
-        }catch(\Exception $exception){
-            return response($exception,$exception->getCode());
+        } catch (\Exception $exception) {
+            return response($exception, $exception->getCode());
         }
     }
 }
