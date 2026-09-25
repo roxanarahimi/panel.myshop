@@ -36,7 +36,7 @@ class PaymentController extends Controller
     }
 
 
-    public function verifyPayment(Request $request)
+    public function verifyPayment(Request $request):Response
     {
 //        بررسی وضعیت تراکنش | Verify payment status
         $authority = request()->query('Authority'); // دریافت کوئری استرینگ ارسال شده توسط زرین پال
@@ -50,7 +50,9 @@ class PaymentController extends Controller
             ->send();
 
         if (!$response->success()) {
-            return $response->error()->message();
+//            return $response->error()->message();
+            return response($response->error(), $response->error()->code());
+
         }
 
 // دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
@@ -61,6 +63,7 @@ class PaymentController extends Controller
 
 // پرداخت موفقیت آمیز بود
 // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
-        return $response->referenceId();
+//        return $response->referenceId();
+        return response($response, 200);
     }
 }
