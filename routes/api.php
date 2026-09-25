@@ -59,5 +59,7 @@ Route::controller(App\Http\Controllers\ShopController::class)->group(function ()
 
 });
 
-
+Route::controller(App\Http\Controllers\ShopController::class)->group(function () {
+    Route::post('user/pay', 'redirectToGateway');
+});
 

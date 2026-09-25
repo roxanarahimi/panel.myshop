@@ -7,13 +7,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-curl": "*",
         "ext-intl": "*",
         "filament/filament": "4.0",
         "kavenegar/php": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "pishran/zarinpal": "^4.3",
-        "ext-curl": "*"
+        "pishran/zarinpal": "^4.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
