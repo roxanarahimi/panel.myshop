@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -9,13 +10,14 @@ class PaymentController extends Controller
     public function redirectToGateway(Request $request)
     {
 //        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
+        $order = Order::find($request['order_id']);
         $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount(100) // مبلغ تراکنش
+            ->amount(100) // مبلغ تراکنش $request['amount']
             ->request()
-            ->description('transaction info 1 1 1 2') // توضیحات تراکنش
+            ->description('transaction info order_id = '.$order['id']) // توضیحات تراکنش
             ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
-            ->mobile('09128222725') // شماره موبایل مشتری - اختیاری
+            ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
 //    ->email($request['mobile']) // ایمیل مشتری - اختیاری
             ->send();
 
