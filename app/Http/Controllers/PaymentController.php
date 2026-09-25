@@ -30,7 +30,7 @@ class PaymentController extends Controller
 // $response->authority();
 
 // هدایت مشتری به درگاه پرداخت
-        return response()->json($response);
+        return response($response);
     }
 
 
