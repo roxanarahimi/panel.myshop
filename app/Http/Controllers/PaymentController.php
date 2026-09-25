@@ -74,10 +74,10 @@ class PaymentController extends Controller
 // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 //        return $response->referenceId();
             return response([
-                "cardHash"=>$response->cardHash(),
-                "cardPan"=>$response->cardPan(),
-                "referenceId"=>$response->referenceId(),
-                "success"=>$response->success(),
+                "cardHash"=>$response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
+                "cardPan"=>$response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
+                "referenceId"=>$response->referenceId(),// پرداخت موفقیت آمیز بود
+// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
             ], 200);
         } catch (\Exception $exception) {
             return response($exception, $exception->getCode());
