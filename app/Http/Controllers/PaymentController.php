@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Transaction;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -60,11 +61,29 @@ class PaymentController extends Controller
 
             // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 
+
+
             if ($response->success()) {
+                $code = $order['id'].'-'.rand(1001, 9999);
+                $order->upate(["code"=>$code, "type"=>'order',]);
+                Order::create(["type"=>'cart', "user_id"=>$order['user_id'],]);
+                Transaction::create([
+                    "order_id"=>$order['id'],
+                    "user_id"=>$order['user_id'],
+                    "amount"=>$order['amount'],
+                    "reference_id"=>$response->referenceId(),
+                    "status"=>'payed',
+                    ]);
+
                 return response([
                     "cardHash" => $response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
                     "cardPan" => $response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
                     "referenceId" => $response->referenceId(),// پرداخت موفقیت آمیز بود
+                    "name" => $order->user->name,
+                    "code" => $order->code,
+                    "amount" => $order->amount,
+                    "title" => 'پرداخت موفق',
+                    "message" => 'سفارش شما با موفقیت ثبت شد',
                 ], 200);
             }
             return response($response->error()->message(), $response->error()->code());
