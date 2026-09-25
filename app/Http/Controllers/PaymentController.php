@@ -73,7 +73,7 @@ class PaymentController extends Controller
 // پرداخت موفقیت آمیز بود
 // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 //        return $response->referenceId();
-            return response($response->success(), 200);
+            return response($response->referenceId(), 200);
         } catch (\Exception $exception) {
             return response($exception, $exception->getCode());
         }
