@@ -66,7 +66,7 @@ class PaymentController extends Controller
             if ($response->success()) {
                 $code = $order['id'].'-'.rand(1001, 9999);
                 $order->upate(["code"=>$code, "type"=>'order',]);
-                Order::create(["type"=>'cart', "user_id"=>$order['user_id'],]);
+                Order::create(["user_id"=>$order['user_id']]);
                 Transaction::create([
                     "order_id"=>$order['id'],
                     "user_id"=>$order['user_id'],
@@ -74,7 +74,6 @@ class PaymentController extends Controller
                     "reference_id"=>$response->referenceId(),
                     "status"=>'payed',
                     ]);
-
                 return response([
                     "cardHash" => $response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
                     "cardPan" => $response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
