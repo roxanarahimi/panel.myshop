@@ -32,7 +32,7 @@ class PaymentController extends Controller
 
 // هدایت مشتری به درگاه پرداخت
 //        return $response->redirect();
-        return response(['url'=>$response->redirect()->getTargetUrl()], $response->getCode());
+        return response(['url'=>$response->redirect()->getTargetUrl()], 200);
     }
 
 
