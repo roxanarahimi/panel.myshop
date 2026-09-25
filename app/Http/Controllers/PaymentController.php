@@ -49,19 +49,14 @@ class PaymentController extends Controller
 //        بررسی وضعیت تراکنش | Verify payment status
             $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
             $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
-            $order = Order::find($request->query('order_id'));
+            $order = Order::findOrFail($request->query('order_id'));
 
 
             $response = zarinpal()
-//    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
                 ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
-
-            // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
-
-
 
             if ($response->success()) {
                 $code = $order['id'].'-'.rand(1001, 9999);
