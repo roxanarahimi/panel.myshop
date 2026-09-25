@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function redirectToGateway(Request $request)
+    public function redirectToGateway(Request $request):Response
     {
 //        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
         $order = Order::find($request['order_id']);
@@ -31,7 +32,7 @@ class PaymentController extends Controller
 
 // هدایت مشتری به درگاه پرداخت
 //        return $response->redirect();
-        return $response->redirect()->getTargetUrl();
+        return response($response->redirect()->getTargetUrl(), $response->getCode());
     }
 
 
