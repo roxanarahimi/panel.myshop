@@ -18,7 +18,7 @@ class PaymentController extends Controller
                 ->amount(7000) // مبلغ تراکنش $request['amount']
                 ->request()
                 ->description('transaction info order_id = ' . $order['id']) // توضیحات تراکنش
-                ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
+                ->callbackUrl('https://rxshop.ir/verification?oid='.$order['id']) // آدرس برگشت پس از پرداخت
                 ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
 //    ->email($request['mobile']) // ایمیل مشتری - اختیاری
                 ->send();
@@ -43,12 +43,12 @@ class PaymentController extends Controller
 
     public function verifyPayment(Request $request): Response
     {
-
         try {
 
 //        بررسی وضعیت تراکنش | Verify payment status
             $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
             $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $order = Order::find($request->query('order_id'));
 
 
             $response = zarinpal()
@@ -58,27 +58,17 @@ class PaymentController extends Controller
                 ->authority($authority)
                 ->send();
 
-            if (!$response->success()) {
-//            return $response->error()->message();
-                return response($response->error()->message(), $response->error()->code());
+            // دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
 
+            if ($response->success()) {
+                return response([
+                    "cardHash" => $response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
+                    "cardPan" => $response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
+                    "referenceId" => $response->referenceId(),// پرداخت موفقیت آمیز بود
+                ], 200);
             }
+            return response($response->error()->message(), $response->error()->code());
 
-// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
-// $response->cardHash();
-
-// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
-// $response->cardPan();
-
-// پرداخت موفقیت آمیز بود
-// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
-//        return $response->referenceId();
-            return response([
-                "cardHash"=>$response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
-                "cardPan"=>$response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
-                "referenceId"=>$response->referenceId(),// پرداخت موفقیت آمیز بود
-// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
-            ], 200);
         } catch (\Exception $exception) {
             return response($exception, $exception->getCode());
         }
