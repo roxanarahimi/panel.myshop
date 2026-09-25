@@ -43,11 +43,6 @@ class PaymentController extends Controller
 
     public function verifyPayment(Request $request): Response
     {
-        return response([
-            'success' => true,
-            'authority' => $request->query('Authority'),
-            'status' => $request->query('Status'),
-        ], 200);
 
         try {
 
