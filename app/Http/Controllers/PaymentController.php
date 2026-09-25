@@ -41,59 +41,41 @@ class PaymentController extends Controller
     }
 
 
-    public function verifyPayment(Request $request)
+    public function verifyPayment(Request $request): Response
     {
+
         try {
 
-            $authority = $request->query('Authority');
-            $status = $request->query('Status');
+//        بررسی وضعیت تراکنش | Verify payment status
+            $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+
 
             $response = zarinpal()
+//    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
                 ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
-
-            \Log::info('Zarinpal VERIFY RESULT', [
-                'success' => $response->success(),
-                'error_code' => $response->error()?->code(),
-                'error_message' => $response->error()?->message(),
-            ]);
-            $response = zarinpal()
-                ->amount(7000)
-                ->verification()
-                ->authority($authority)
-                ->send();
-
-            \Log::info('Zarinpal VERIFY RESPONSE', [
-                'response' => $response,
-            ]);
 
             if (!$response->success()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $response->error()->message(),
-                    'code' => $response->error()->code(),
-                ], 400);
+//            return $response->error()->message();
+                return response($response->error()->message(), $response->error()->code());
+
             }
 
-            return response()->json([
-                'success' => true,
-                'reference_id' => $response->referenceId(),
-            ]);
+// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
+// $response->cardHash();
 
-        } catch (\Throwable $exception) {
+// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
+// $response->cardPan();
 
-            \Log::error('Zarinpal VERIFY EXCEPTION', [
-                'message' => $exception->getMessage(),
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine(),
-                'trace' => $exception->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => $exception->getMessage(),
-            ], 500);
+// پرداخت موفقیت آمیز بود
+// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
+//        return $response->referenceId();
+            return response($response, 200);
+        } catch (\Exception $exception) {
+            return response($exception, $exception->getCode());
         }
-    }}
+    }
+}
