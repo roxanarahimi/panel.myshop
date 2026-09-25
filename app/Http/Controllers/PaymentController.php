@@ -13,7 +13,7 @@ class PaymentController extends Controller
         $order = Order::find($request['order_id']);
         $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount(100) // مبلغ تراکنش $request['amount']
+            ->amount(10000) // مبلغ تراکنش $request['amount']
             ->request()
             ->description('transaction info order_id = '.$order['id']) // توضیحات تراکنش
             ->callbackUrl('https://rxshop.ir/verification') // آدرس برگشت پس از پرداخت
