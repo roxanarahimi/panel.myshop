@@ -39,12 +39,12 @@ class PaymentController extends Controller
     public function verifyPayment(Request $request):Response
     {
 //        بررسی وضعیت تراکنش | Verify payment status
-        $authority = request()->query('Authority'); // دریافت کوئری استرینگ ارسال شده توسط زرین پال
-        $status = request()->query('Status'); // دریافت کوئری استرینگ ارسال شده توسط زرین پال
+        $authority = $request['Authority']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
+        $status = $request['Status']; // دریافت کوئری استرینگ ارسال شده توسط زرین پال
 
         $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
-            ->amount(100)
+            ->amount(7000)
             ->verification()
             ->authority($authority)
             ->send();
