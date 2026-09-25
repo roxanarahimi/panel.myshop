@@ -41,44 +41,46 @@ class PaymentController extends Controller
     }
 
 
-    public function verifyPayment(Request $request)
+    public function verifyPayment(Request $request): Response
     {
+
         try {
 
-            $authority = $request->query('Authority');
-            $status = $request->query('Status');
+//        بررسی وضعیت تراکنش | Verify payment status
+            $authority = $request->query('Authority');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
+            $status = $request->query('Status');// دریافت کوئری استرینگ ارسال شده توسط زرین پال
 
-            if ($status !== 'OK') {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Payment cancelled',
-                ], 400);
-            }
 
             $response = zarinpal()
+//    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
                 ->amount(7000)
                 ->verification()
                 ->authority($authority)
                 ->send();
 
             if (!$response->success()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => $response->error()->message(),
-                    'code' => $response->error()->code(),
-                ], 400);
+//            return $response->error()->message();
+                return response($response->error()->message(), $response->error()->code());
+
             }
 
-            return response()->json([
-                'success' => true,
-                'reference_id' => $response->referenceId(),
-            ]);
+// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
+// $response->cardHash();
 
-        } catch (\Throwable $exception) {
+// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
+// $response->cardPan();
 
-            return response()->json([
-                'success' => false,
-                'message' => $exception->getMessage(),
-            ], 500);
+// پرداخت موفقیت آمیز بود
+// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
+//        return $response->referenceId();
+            return response([
+                "cardHash"=>$response->cardHash(),
+                "cardPan"=>$response->cardPan(),
+                "referenceId"=>$response->referenceId(),
+                "success"=>$response->success(),
+            ], 200);
+        } catch (\Exception $exception) {
+            return response($exception, $exception->getCode());
         }
-    }}
+    }
+}
