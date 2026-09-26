@@ -80,10 +80,10 @@ class PaymentController extends Controller
                     "message" => 'سفارش شما با موفقیت ثبت شد',
                 ], 200);
             }
-            return response(['title'=>'خطا','message'=>$response->error()->message()], $response->error()->code());
+            return response(['title'=>'','message'=>$response->error()->message()], $response->error()->code());
 
         } catch (\Exception $exception) {
-            return response(['title'=>'خطا','message'=>$exception,'data'=>$exception], 500);
+            return response(['title'=>'','message'=>$exception->getMessage(),'data'=>$exception], 500);
         }
     }
 }
