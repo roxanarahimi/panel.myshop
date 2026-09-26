@@ -60,7 +60,7 @@ class PaymentController extends Controller
 
             if ($response->success()) {
                 $code = $order['id'].'-'.rand(1001, 9999);
-                $order->update(["code"=>$code, "type"=>'order']);
+                $order->update(["code"=>$code, "type"=>'order',"status"=>'payed',"payed_at"=>now(),'address_id']);
                 Order::create(["user_id"=>$order['user_id']]);
                 Transaction::create([
                     "order_id"=>$order['id'],
@@ -80,10 +80,10 @@ class PaymentController extends Controller
                     "message" => 'سفارش شما با موفقیت ثبت شد',
                 ], 200);
             }
-            return response($response->error()->message(), $response->error()->code());
+            return response(['title'=>'خطا','message'=>$response->error()->message()], $response->error()->code());
 
         } catch (\Exception $exception) {
-            return response($exception, 500);
+            return response(['title'=>'خطا','message'=>$exception,'data'=>$exception], 500);
         }
     }
 }
