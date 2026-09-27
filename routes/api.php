@@ -29,7 +29,7 @@ Route::controller(App\Http\Controllers\UserController::class)->group(function ()
 
     Route::get('/user/{id}', 'show');
     Route::post('/update/user', 'update');
-    Route::post('/store/address', 'storeAddress');
+    Route::post('/store/auseruseddress', 'storeAddress');
     Route::post('/update/address', 'updateAddress');
 
 });

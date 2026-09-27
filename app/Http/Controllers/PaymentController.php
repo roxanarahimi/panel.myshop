@@ -60,7 +60,7 @@ class PaymentController extends Controller
 
             if ($response->success()) {
                 $code = $order['id'].'-'.rand(1001, 9999);
-                $order->update(["code"=>$code, "type"=>'order',"status"=>'payed',"payed_at"=>now(),'address_id']);
+                $order->update(["code"=>$code, "type"=>'order',"status"=>'payed',"payed_at"=>now(),'address_id'=>1]);
                 Order::create(["user_id"=>$order['user_id']]);
                 Transaction::create([
                     "order_id"=>$order['id'],
