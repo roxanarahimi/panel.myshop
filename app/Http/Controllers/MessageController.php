@@ -48,7 +48,7 @@ class MessageController extends Controller
 
             Cache::put($mobile, $code, 60);
 
-            if ($result && $array['status'] ===300) {
+            if ($result && $array['status'] ===236) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
