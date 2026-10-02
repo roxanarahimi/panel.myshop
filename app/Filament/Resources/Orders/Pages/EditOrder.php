@@ -17,14 +17,12 @@ class EditOrder extends EditRecord
 
     protected function afterSave(): Response
     {
-        if (
-            $this->record->wasChanged('status') &&
-            $this->record->status === 'sent' &&
-            $this->record->user?->email_verified_at !== null) {
-           $send = Mail::to($this->record->user->email)
-                ->send(new OrderUpdatedMail($this->record));
-           return response($send, ResponseAlias::HTTP_OK);
+        if ($this->record->wasChanged('status') && $this->record->status === 'sent' && $this->record->user?->email_verified_at !== null)
+        {
+           $send = Mail::to($this->record->user->email)->send(new OrderUpdatedMail($this->record));
+           return response($send, 422);
         }
+        return \response(['message'=>'notSent'],500);
     }
 
     protected function getHeaderActions(): array
