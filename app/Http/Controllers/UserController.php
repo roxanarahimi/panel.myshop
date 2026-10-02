@@ -39,7 +39,7 @@ class UserController extends Controller
 
             } else {
                 $smsSent = false;
-                return $send;
+                return response(['message' => 'پیامک ارسال نشد.','sms sending status'=>false], $send->getStatusCode());
             }
         } catch (\Exception $exception) {
             return $exception;
