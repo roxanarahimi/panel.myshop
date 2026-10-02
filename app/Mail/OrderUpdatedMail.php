@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -16,7 +17,7 @@ class OrderUpdatedMail extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public Order $order
+        public OrderResource $order
     ) {}
 
     public function build()
