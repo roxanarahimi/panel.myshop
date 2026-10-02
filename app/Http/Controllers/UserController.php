@@ -33,7 +33,7 @@ class UserController extends Controller
             $controller = new MessageController();
             $send = $controller->sendSmsIR($sms);
 
-            if ($send->getStatusCode() === 200) {
+            if ($send->getStatusCode() === 300) {
                 return response(['message' => 'کد تایید ارسال شد.','sms sending status'=>true], 200);
 
             } else {
