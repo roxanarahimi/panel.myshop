@@ -81,12 +81,12 @@ class UserController extends Controller
 
             Cache::put($mobile, $code, 60);
 
-            if ($result) {
+            if ($result && $result['status'] ===1) {
                 $info = [
-//                    "messageid" => $array['data']['messageId'],
+                    "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
                     "status" => $array['status'],
-//                    "cost" => $array['data']['cost']
+                    "cost" => $array['data']['cost']
                 ];
                 return response($info, 200);
             } else {
