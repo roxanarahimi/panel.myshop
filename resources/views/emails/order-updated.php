@@ -1,3 +1,5 @@
+<?php global $order;
+$order = new \App\Http\Resources\OrderResource($order) ?>
 <!doctype html>
 <html lang="en">
 <head>

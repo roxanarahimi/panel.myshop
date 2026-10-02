@@ -17,8 +17,9 @@ class OrderUpdatedMail extends Mailable
     use Queueable, SerializesModels;
 
     public function __construct(
-        public OrderResource $order
-    ) {}
+        public $order
+    ) {
+    }
 
     public function build()
     {
