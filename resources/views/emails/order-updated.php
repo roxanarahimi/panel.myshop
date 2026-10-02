@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>بروز رسانی وضعیت سفارش</title>
 </head>
-<body dir="rtl" style="text-align: right !important; font-family: 'Arial Narrow' !important">
+<body dir="rtl" style="text-align: right !important; font-family: 'B Yekan' !important">
 <h2>سلام <?php echo explode(' ',$order->user->name)[0]  ?></h2>
 
 <p>
