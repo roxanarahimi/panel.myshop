@@ -21,7 +21,7 @@ class EditOrder extends EditRecord
             $this->record->user?->email_verified_at !== null
         ) {
             Mail::to($this->record->user->email)
-                ->send(new OrderUpdatedMail($this->record));
+                ->send(new OrderUpdatedMail(new \App\Http\Resources\OrderResource($this->record)));
         }
     }
 
