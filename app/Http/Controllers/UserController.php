@@ -86,7 +86,7 @@ class UserController extends Controller
 //                    "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
                     "status" => $array['status'],
-                    "cost" => $array['data']['cost']
+//                    "cost" => $array['data']['cost']
                 ];
                 return response($info, 200);
             } else {
