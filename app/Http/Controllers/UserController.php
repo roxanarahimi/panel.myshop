@@ -83,7 +83,7 @@ class UserController extends Controller
 
             if ($result) {
                 $info = [
-                    "messageid" => $array['data']['messageId'],
+//                    "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
                     "status" => $array['status'],
                     "cost" => $array['data']['cost']
