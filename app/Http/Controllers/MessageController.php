@@ -30,8 +30,7 @@ class MessageController extends Controller
         "mobile": "'.$mobile.'",
         "templateId": "'.$request['templateId'].'",
         "parameters": [
-          {  "name":"CODE", "value": '.$code.' } ,
-          {  "name":"TEXT", "value": '.$request['TEXT'].'}
+          {  "name":"CODE", "value": '.$code.' }
         ]
       }',
                 CURLOPT_HTTPHEADER => array(
@@ -44,11 +43,12 @@ class MessageController extends Controller
             $result = curl_exec($curl);
             curl_close($curl);
 
+            return response($result,500);
             $array = json_decode($result, true);
 
             Cache::put($mobile, $code, 60);
 
-            if ($result) {
+            if ($result && $result->status ===1) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
