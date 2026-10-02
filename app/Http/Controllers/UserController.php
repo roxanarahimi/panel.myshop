@@ -25,7 +25,7 @@ class UserController extends Controller
             $sms = new Request([
                 'mobile' => $mobile,
                 'code' => $code,
-                'text' => '',
+                'text' => '/n',
                 'templateId' => '949086',
 
             ]);
