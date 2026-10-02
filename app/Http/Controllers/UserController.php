@@ -25,7 +25,6 @@ class UserController extends Controller
             $sms = new Request([
                 'mobile' => $mobile,
                 'code' => $code,
-                'text' => '123123123 465 564564',
                 'templateId' => '949086',
 
             ]);
@@ -64,7 +63,6 @@ class UserController extends Controller
         "templateId": "'.$request['templateId'].'",
         "parameters": [
           {  "name":"CODE", "value": '.$code.' } ,
-         {  "name":"TEXT", "value": '.$request['text'].'}
         ]
       }',
                 CURLOPT_HTTPHEADER => array(
