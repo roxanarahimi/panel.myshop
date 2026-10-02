@@ -34,12 +34,10 @@ class UserController extends Controller
             $send = $controller->sendSmsIR($sms);
 
             if ($send->getStatusCode() === 200) {
-                $smsSent = true;
                 return response(['message' => 'کد تایید ارسال شد.','sms sending status'=>true], 200);
 
             } else {
-                $smsSent = false;
-                return response(['message' => 'پیامک ارسال نشد.','sms sending status'=>false], $send->getStatusCode());
+                return response(['message' => 'پیامک ارسال نشد.','sms sending status'=>false], 500);
             }
         } catch (\Exception $exception) {
             return $exception;
