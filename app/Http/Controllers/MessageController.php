@@ -43,7 +43,7 @@ class MessageController extends Controller
             $result = curl_exec($curl);
             curl_close($curl);
 
-            return response($result,500);
+//            return response($result,500);
             $array = json_decode($result, true);
 
             Cache::put($mobile, $code, 60);
