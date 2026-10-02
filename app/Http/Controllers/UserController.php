@@ -77,16 +77,17 @@ class UserController extends Controller
             $result = curl_exec($curl);
             curl_close($curl);
 
+            return response($result,$result->getStatusCode());
             $array = json_decode($result, true);
 
             Cache::put($mobile, $code, 60);
 
-            if ($result && $result['status'] ===200) {
+            if ($result && $result['status'] ===1) {
                 $info = [
-//                    "messageid" => $array['data']['messageId'],
+                    "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
                     "status" => $array['status'],
-//                    "cost" => $array['data']['cost']
+                    "cost" => $array['data']['cost']
                 ];
                 return response($info, 200);
             } else {
