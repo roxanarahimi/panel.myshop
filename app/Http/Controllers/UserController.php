@@ -62,7 +62,6 @@ class UserController extends Controller
         "mobile": "'.$mobile.'",
         "templateId": "'.$request['templateId'].'",
         "parameters": [
-          {  "name":"CODE", "value": '.$code.' } ,
         ]
       }',
                 CURLOPT_HTTPHEADER => array(
