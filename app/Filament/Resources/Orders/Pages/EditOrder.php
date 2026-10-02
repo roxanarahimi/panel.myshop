@@ -8,20 +8,22 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class EditOrder extends EditRecord
 {
     protected static string $resource = OrderResource::class;
 
-    protected function afterSave(): void
+    protected function afterSave(): Response
     {
         if (
             $this->record->wasChanged('status') &&
             $this->record->status === 'sent' &&
-            $this->record->user?->email_verified_at !== null
-        ) {
-            Mail::to($this->record->user->email)
+            $this->record->user?->email_verified_at !== null) {
+           $send = Mail::to($this->record->user->email)
                 ->send(new OrderUpdatedMail($this->record));
+           return response($send, ResponseAlias::HTTP_OK);
         }
     }
 
