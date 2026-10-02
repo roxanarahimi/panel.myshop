@@ -8,7 +8,7 @@
     <title>بروز رسانی وضعیت سفارش</title>
 </head>
 <body>
-<h2>سلام <?php echo $order->user->name  ?></h2>
+<h2>سلام <?php echo implode(' ',$order->user->name)[0]  ?></h2>
 
 <p>
     سفارشت ارسال شد.
@@ -20,7 +20,6 @@
 
 <p>
     کد رهگیری پست:
-    {{ $order->post_tracking_number }}
     <?php echo $order->post_tracking_number  ?>
 </p>
 
