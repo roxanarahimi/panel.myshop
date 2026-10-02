@@ -218,4 +218,5 @@ class ShopController extends Controller
         $cart = Order::findOrFail($request['id']);
         return response(new OrderResource($cart), 200);
     }
+
 }

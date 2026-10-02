@@ -40,8 +40,6 @@ class PaymentController extends Controller
             return response($exception, $exception->getCode());
         }
     }
-
-
     public function verifyPayment(Request $request): Response
     {
         try {
@@ -69,6 +67,23 @@ class PaymentController extends Controller
                     "reference_id"=>$response->referenceId(),
                     "status"=>'payed',
                     ]);
+
+                $text = $order->user->name.' عزیز،
+                سفارشت با کد '.$code.'با موفقیت ثبت شد.';
+                $sms = new Request([
+                    'mobile' => $order->user->mobile,
+                    'text' => $text,
+                    'templateId' => '582484',
+                ]);
+
+                $controller = new UserController();
+                $send = $controller->sendSmsIR($sms);
+
+                if ($send->getStatusCode() === 200) {
+                    $smsSent = true;
+                } else {
+                    $smsSent = false;
+                }
                 return response([
                     "cardHash" => $response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
                     "cardPan" => $response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
@@ -77,7 +92,8 @@ class PaymentController extends Controller
                     "code" => $order->code,
                     "amount" => $order->amount,
                     "title" => 'پرداخت موفق',
-                    "message" => 'سفارش شما با موفقیت ثبت شد',
+                    "message" => 'سفارش با موفقیت ثبت شد',
+                    "smsSent" => $smsSent,
                 ], 200);
             }
             return response(['title'=>'','message'=>$response->error()->message()], $response->error()->code());

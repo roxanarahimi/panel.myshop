@@ -17,120 +17,34 @@ class UserController extends Controller
     {
         try {
             $mobile = $this->faToEn($request['mobile']);
-//            $user = User::where('mobile', $mobile)->first();
 //            if ($user && $user->role === 'admin') {
 //                return response(['message' => 'این شماره موبایل قابل استفاده نیست. لطفا با شماره دیگری تلاش کنید.'], 422);
 //            }
+            $code = rand(1001, 9999);
 
             $sms = new Request([
                 'mobile' => $mobile,
+                'code' => $code,
+                'templateId' => '949086',
+
             ]);
 
-            $send = $this->sendSmsIR($sms);
-            if ($send->getStatusCode() === 200) {
-                return response(['message' => 'کد تایید ارسال شد.'], 200);
+            $controller = new MessageController();
+            $send = $controller->sendSmsIR($sms);
 
+            if ($send->getStatusCode() === 200) {
+                $smsSent = true;
+                return response(['message' => 'کد تایید ارسال شد.'], 200);
             } else {
+                $smsSent = false;
                 return $send;
             }
+
+
+
+
         } catch (\Exception $exception) {
             return $exception;
-        }
-    }
-    public function sendSmsIR(Request $request): Response
-    {
-        try {
-
-            $mobile = $request['mobile'];
-            $code = rand(1001, 9999);
-            Cache::put($mobile, $code, 60);
-
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.sms.ir/v1/send/verify',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS =>'{
-        "mobile": "'.$mobile.'",
-        "templateId": "949086",
-        "parameters": [
-          {
-              "name":"CODE",
-              "value": '.$code.'
-          }
-        ]
-      }',
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
-                    'Accept: text/plain',
-                    'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
-                ),
-            ));
-
-            $result = curl_exec($curl);
-            curl_close($curl);
-
-            $array = json_decode($result, true);
-
-            if ($result) {
-                $info = [
-                    "messageid" => $array['data']['messageId'],
-                    "message" => $array['message'],
-                    "status" => $array['status'],
-                    "cost" => $array['data']['cost']
-                ];
-                return response($info, 200);
-            } else {
-                $info = $result;
-                return response($info, 500);
-            }
-
-
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e,$e->getCode());
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
-            return response($e,$e->getCode());
-        }
-    }
-    public function sendSmsKaveh(Request $request): Response
-    {
-        try {
-            $api = new \Kavenegar\KavenegarApi("4470686233536566795848666962306F59327335574D786772655075704668586C31415162524E717747413D");
-            $sender = "10008252";
-            $message = $request['message'];
-            $receptor = $request['mobile'];
-            $result = $api->Send($sender, $receptor, $message);
-            if ($result) {
-                $info = [
-                    "messageid" => $result[0]->messageid,
-                    "message" => $result[0]->message,
-                    "status" => $result[0]->status,
-                    "statustext" => $result[0]->statustext,
-                    "sender" => $result[0]->sender,
-                    "receptor" => $result[0]->receptor,
-                    "date" => $result[0]->date,
-                    "cost" => $result[0]->cost
-                ];
-
-            } else {
-                $info = $result;
-            }
-            return response($info, 200);
-
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e,$e->getCode());
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
-            return response($e,$e->getCode());
         }
     }
     public function verifyMobile(Request $request)
