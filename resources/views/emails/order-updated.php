@@ -1,5 +1,3 @@
-<?php global $order;
-$order = new \App\Http\Resources\OrderResource($order) ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,7 +8,7 @@ $order = new \App\Http\Resources\OrderResource($order) ?>
     <title>بروز رسانی وضعیت سفارش</title>
 </head>
 <body>
-<h2>سلام {{ $order->user->name }}</h2>
+<h2>سلام <?php echo $order->user->name  ?></h2>
 
 <p>
     سفارشت ارسال شد.
@@ -18,12 +16,12 @@ $order = new \App\Http\Resources\OrderResource($order) ?>
 
 <p>
     شماره سفارش:
-    {{ $order->code }}
-</p>
+    <?php echo $order->code  ?></p>
 
 <p>
     کد رهگیری پست:
     {{ $order->post_tracking_number }}
+    <?php echo $order->post_tracking_number  ?>
 </p>
 
 <p>
