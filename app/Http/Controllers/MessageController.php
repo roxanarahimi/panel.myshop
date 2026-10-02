@@ -57,8 +57,7 @@ class MessageController extends Controller
                 ];
                 return response($info, 200);
             } else {
-                $info = $result;
-                return response($info, 500);
+                return response($result, 500);
             }
 
 
