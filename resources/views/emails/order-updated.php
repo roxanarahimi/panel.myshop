@@ -8,7 +8,7 @@
     <title>بروز رسانی وضعیت سفارش</title>
 </head>
 <body>
-<h2>سلام <?php echo implode(' ',$order->user->name)[0]  ?></h2>
+<h2>سلام <?php echo explode(' ',$order->user->name)[0]  ?></h2>
 
 <p>
     سفارشت ارسال شد.
