@@ -16,7 +16,8 @@
 
 <p>
     شماره سفارش:
-    <?php echo $order->code  ?></p>
+   <span dir="ltr"><?php echo $order->code  ?></span>
+</p>
 
 <p>
     کد رهگیری پست:
