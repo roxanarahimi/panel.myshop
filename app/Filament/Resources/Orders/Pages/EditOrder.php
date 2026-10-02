@@ -15,7 +15,7 @@ class EditOrder extends EditRecord
 
 
     public function __construct(
-         public array $order
+         public \App\Http\Resources\OrderResource $order
     ) {}
 
     protected function afterSave(): void
