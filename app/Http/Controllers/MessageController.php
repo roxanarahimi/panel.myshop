@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -69,6 +70,39 @@ class MessageController extends Controller
             return response($e,$e->getCode());
         }
     }
+    public function sendEmail(Request $request): Response
+    {
+        try {
+
+            $email = $request['email'];
+            $text = $request['text'];
+
+
+            $result = Mail::raw('سلام، این یک ایمیل تستی است.', function ($message) {
+                $message
+                    ->to('ms.roxanarahimi@gmail.com')
+                    ->subject('تست ارسال ایمیل')
+                    ->from('noreply@rxshop.ir', 'RX Shop');
+            });
+
+
+            if ($result && $result['status'] ===200) {
+                return response($result, 200);
+            } else {
+                return response($result, 500);
+            }
+
+
+        } catch (\Kavenegar\Exceptions\ApiException $e) {
+            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
+            return response($e,$e->getCode());
+        } catch (\Kavenegar\Exceptions\HttpException $e) {
+            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
+            return response($e,$e->getCode());
+        }
+    }
+
+
     public function sendSmsKaveh(Request $request): Response
     {
         try {
