@@ -19,7 +19,7 @@
 </p>
 
 <div class="" style="border-bottom: 1px solid lightgrey" >
-    <table class="table table-borderless mb-0 w-100">
+    <table class="table table-borderless mb-0 w-100" style="border: none">
         <tbody class="">
         <tr class="">
             <th scope="col">شماره سفارش</th>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
 </div>
-<table class="table border mb-0" style="width: 100%">
+<table class="table border mb-0" style="width: 100%; border: 1px solid lightgrey">
     <tbody>
     <?php foreach ($order->items as $item) { ?>
         <tr class="">
@@ -72,7 +72,7 @@
     </tbody>
 </table>
 <div class="border border-top-0 ">
-    <table class="table table-borderless" style="width: 100%">
+    <table class="table table-borderless" style="width: 100%;border:none">
         <tbody class="">
         <tr class="">
             <th class="text-center">جمع کل</th>
