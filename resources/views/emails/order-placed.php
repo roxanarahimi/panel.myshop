@@ -41,7 +41,7 @@
         </tbody>
     </table>
 </div>
-<table class="table border mb-0 w-100" >
+<table class="table border mb-0" style="width: 100% !important" >
     <tbody>
     <?php foreach ($order->items as $item){ ?>
     <tr class="">
