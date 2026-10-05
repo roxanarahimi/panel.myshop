@@ -42,8 +42,8 @@
     <tr class="">
         <td class="position-relative" style="width: 120px">
             <input class="d-none" type="hidden" value="<?php echo $item->id?>" name="items">
-            <a href="'https://rxshop.ir/product/'<?php echo $item->product_info->slug ?>" >
-                <img class="" width="80px" src="<?php echo 'https://panel.rxshop.ir/storage/'.$item->product_info->images[0]?>" />
+            <a href="'https://rxshop.ir/product/'<?php echo $item->product->info->slug ?>" >
+                <img class="" width="80px" src="<?php echo 'https://panel.rxshop.ir/storage/'.$item->product->info->images[0]?>" />
             </a>
             <div class="text-center text-left " style="position: absolute; bottom: 30px; left: 30px">
                 <div class="cart-badge-2"><?php echo $item->quantity ?></div>
@@ -52,7 +52,7 @@
         <td class="text-right align-content-start align-top" >
             <div class="h-100">
                 <div class=" text-right" >
-                    <?php echo $item->product_info->title ?>
+                    <?php echo $item->product->info->title ?>
                 </div>
                 <small class=" text-right mb-3" >
                     <?php echo $item->product->size ?>
