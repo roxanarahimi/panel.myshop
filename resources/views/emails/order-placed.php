@@ -44,7 +44,7 @@
 <table class="table border mb-0" style="width: 300px" >
     <tbody>
     <?php foreach ($order->items as $item){ ?>
-    <tr class="" style="width: 300px">
+    <tr class="" >
         <td class="position-relative">
             <a href="'https://rxshop.ir/product/'<?php echo $item->product->info->slug ?>"  style="width: 80px">
                 <img class="" width="80px" height="80px" src="<?php echo 'https://panel.rxshop.ir/storage/'.$item->product->info->images[0]?>" />
