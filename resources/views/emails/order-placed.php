@@ -51,15 +51,15 @@
                     <small class=" text-right mb-3">
                         <?php echo $item->product->size ?>
                     </small>
+                    <?php if ($item->off > 0) { ?>
                     <div class="text-right text-black-50">
                         <small><i class="bi bi-coin ms-2"></i><?php echo $item->price ?></small>
                     </div>
-                    <?php if ($item->off > 0) { ?>
-                        <div class="text-right text-black-50" data-data="$item->off">
+                        <div class="text-right text-black-50">
                             <small> <i class="bi bi-gift ms-2"></i><?php echo $item->off ?>%</small>
                         </div>
                     <?php } ?>
-                    <div class="text-right" data-data="$item->amount">
+                    <div class="text-right">
                         <i class="bi bi-cash-stack ms-2"></i><?php echo $item->price * (1 - $item->off / 100) * $item->quantity ?>
                     </div>
                 </div>
