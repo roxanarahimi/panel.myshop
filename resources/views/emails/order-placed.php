@@ -72,7 +72,7 @@
     </tbody>
 </table>
 <div class="border border-top-0 ">
-    <table class="table table-borderless" style="width: 100%px">
+    <table class="table table-borderless" style="width: 100%">
         <tbody class="">
         <tr class="">
             <th class="text-center">جمع کل</th>
