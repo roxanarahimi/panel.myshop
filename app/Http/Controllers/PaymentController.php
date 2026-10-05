@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlacedMail;
+use App\Mail\OrderUpdatedMail;
 use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -19,7 +22,7 @@ class PaymentController extends Controller
                 ->amount(7000) // مبلغ تراکنش $request['amount']
                 ->request()
                 ->description('transaction info order_id = ' . $order['id']) // توضیحات تراکنش
-                ->callbackUrl('https://rxshop.ir/verification?oid='.$order['id']) // آدرس برگشت پس از پرداخت
+                ->callbackUrl('https://rxshop.ir/verification?oid=' . $order['id']) // آدرس برگشت پس از پرداخت
                 ->mobile($order->user->mobile) // شماره موبایل مشتری - اختیاری
 //    ->email($request['mobile']) // ایمیل مشتری - اختیاری
                 ->send();
@@ -40,6 +43,7 @@ class PaymentController extends Controller
             return response($exception, $exception->getCode());
         }
     }
+
     public function verifyPayment(Request $request): Response
     {
         try {
@@ -57,19 +61,19 @@ class PaymentController extends Controller
                 ->send();
 
             if ($response->success()) {
-                $code = $order['id'].'-'.rand(1001, 9999);
-                $order->update(["code"=>$code, "type"=>'order',"status"=>'payed',"payed_at"=>now(),'address_id'=>1]);
-                Order::create(["user_id"=>$order['user_id']]);
+                $code = $order['id'] . '-' . rand(1001, 9999);
+                $order->update(["code" => $code, "type" => 'order', "status" => 'payed', "payed_at" => now(), 'address_id' => 1]);
+                Order::create(["user_id" => $order['user_id']]);
                 Transaction::create([
-                    "order_id"=>$order['id'],
-                    "user_id"=>$order['user_id'],
-                    "amount"=>$order['amount'],
-                    "reference_id"=>$response->referenceId(),
-                    "status"=>'payed',
-                    ]);
+                    "order_id" => $order['id'],
+                    "user_id" => $order['user_id'],
+                    "amount" => $order['amount'],
+                    "reference_id" => $response->referenceId(),
+                    "status" => 'payed',
+                ]);
 
-                $text = $order->user->name.' عزیز،
-                سفارشت با کد '.$code.'با موفقیت ثبت شد.';
+                $text = $order->user->name . ' عزیز،
+                سفارشت با کد ' . $code . 'با موفقیت ثبت شد.';
                 $sms = new Request([
                     'mobile' => $order->user->mobile,
                     'text' => $text,
@@ -96,10 +100,16 @@ class PaymentController extends Controller
                     "smsSent" => $smsSent,
                 ], 200);
             }
-            return response(['title'=>'','message'=>$response->error()->message()], $response->error()->code());
+            return response(['title' => '', 'message' => $response->error()->message()], $response->error()->code());
 
         } catch (\Exception $exception) {
-            return response(['title'=>'','message'=>$exception->getMessage(),'data'=>$exception], 500);
+            return response(['title' => '', 'message' => $exception->getMessage(), 'data' => $exception], 500);
         }
+    }
+
+    public function test($id)
+    {
+        $order = Order::findOrFail($id);
+        Mail::to($order->user->email)->send(new OrderPlacedMail($order));
     }
 }
