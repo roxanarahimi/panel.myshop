@@ -44,8 +44,8 @@
 <table class="table border mb-0" style="width: 100% !important" >
     <tbody>
     <?php foreach ($order->items as $item){ ?>
-    <tr class="">
-        <td class="position-relative" style="width: 120px">
+    <tr class="" style="width: 300px">
+        <td class="position-relative">
             <a href="'https://rxshop.ir/product/'<?php echo $item->product->info->slug ?>"  style="width: 80px">
                 <img class="" width="80px" height="80px" src="<?php echo 'https://panel.rxshop.ir/storage/'.$item->product->info->images[0]?>" />
             </a>
@@ -53,7 +53,7 @@
                 <div class="cart-badge-2"><?php echo $item->quantity ?></div>
             </div>
         </td>
-        <td class="text-right align-content-start align-top" style="width: 100px" >
+        <td class="text-right align-content-start align-top" >
             <div class="h-100">
                 <div class=" text-right" >
                     <?php echo $item->product->info->title ?>
@@ -81,13 +81,13 @@
 <div class="border border-top-0 ">
     <table class="table table-borderless w-100">
         <tbody class="">
-        <tr class="" style="width: 150px">
+        <tr class="" style="width: 300px">
             <th class="text-center">جمع کل</th>
             <th class="text-center">تخفیف کل</th>
             <th class="text-center">هزینه ارسال</th>
             <th class="text-center">مبلغ نهایی</th>
         </tr>
-        <tr class="" style="width: 150px">
+        <tr class="" style="width: 300px">
             <td class="text-center"><?php echo $order->total_amount?></td>
             <td class="text-center"><?php echo $order->total_off?></td>
             <td class="text-center"><?php echo $order->delivery_amount?></td>
