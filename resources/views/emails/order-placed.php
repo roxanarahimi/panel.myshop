@@ -19,7 +19,7 @@
 </p>
 
 <div class="" style="border-bottom: 1px solid lightgrey" >
-    <table class="table table-borderless mb-0 w-100" style="border: none">
+    <table class="table table-borderless mb-0 w-100" style="border: none !important">
         <tbody class="">
         <tr class="">
             <th scope="col">شماره سفارش</th>
@@ -72,7 +72,7 @@
     </tbody>
 </table>
 <div class="border border-top-0 ">
-    <table class="table table-borderless" style="width: 100%;border:none">
+    <table class="table table-borderless" style="width: 100%;border:none !important">
         <tbody class="">
         <tr class="">
             <th class="text-center">جمع کل</th>
