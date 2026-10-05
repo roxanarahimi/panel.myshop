@@ -13,7 +13,6 @@
 <p>
     سفارشت ثبت شد.
 </p>
-
 <p>
     شماره سفارش:
    <span dir="ltr"><?php echo $order->code  ?></span>
