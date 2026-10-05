@@ -109,6 +109,8 @@ class PaymentController extends Controller
     public function test($id)
     {
         $order = Order::findOrFail($id);
-        Mail::to($order->user->email)->send(new OrderPlacedMail($order));
+        Mail::to($order->user->email)
+            ->send(new OrderPlacedMail($order));
+
     }
 }

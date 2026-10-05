@@ -23,18 +23,18 @@ class OrderPlacedMail extends Mailable
     {
         return $this
             ->from('noreply@rxshop.ir', 'RXShop')
-            ->subject('بروزرسانی سفارش')
+            ->subject('سفارش ثبت شد')
             ->view('emails.order-placed');
     }
     /**
      * Get the message envelope.
      */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Order Placed Mail',
-        );
-    }
+//    public function envelope(): Envelope
+//    {
+//        return new Envelope(
+//            subject: 'Order Placed Mail',
+//        );
+//    }
 
     /**
      * Get the message content definition.
