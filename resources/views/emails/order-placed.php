@@ -17,10 +17,6 @@
 <p>
     سفارشت ثبت شد.
 </p>
-<p>
-    شماره سفارش:
-    <span dir="ltr"><?php echo $order->code ?></span>
-</p>
 
 <div class="border border-bottom-0">
     <table class="table table-borderless mb-0 w-100">
@@ -30,12 +26,6 @@
             <td scope="row"><?php echo $order->code ?></td>
             <th scope="col">تاریخ ثبت</th>
             <td><?php echo $order->payed_at ?></td>
-        </tr>
-        <tr class="">
-        </tr>
-        <tr class="">
-            <th scope="col">وضعیت</th>
-            <td><span class="badge bg-warning"><?php echo $order->status ?></span></td>
         </tr>
         </tbody>
     </table>
