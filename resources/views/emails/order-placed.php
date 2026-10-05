@@ -90,7 +90,7 @@
         </tbody>
     </table>
 </div>
-<a href="https://rxshop.ir/factor/'<?php echo $order->code ?>"
+<a href="https://rxshop.ir/factor/<?php echo $order->code ?>"
    class="btn btn-sm btn-block bg-primary d-block text-light">مشاهده فاکتور</a>
 
 
