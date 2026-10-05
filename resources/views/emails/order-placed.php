@@ -41,7 +41,7 @@
         </tbody>
     </table>
 </div>
-<table class="table border mb-0" style="width: 100% !important" >
+<table class="table border mb-0" style="width: 300px" >
     <tbody>
     <?php foreach ($order->items as $item){ ?>
     <tr class="" style="width: 300px">
@@ -79,15 +79,15 @@
     </tbody>
 </table>
 <div class="border border-top-0 ">
-    <table class="table table-borderless w-100">
+    <table class="table table-borderless" style="width: 300px">
         <tbody class="">
-        <tr class="" style="width: 300px">
+        <tr class="" >
             <th class="text-center">جمع کل</th>
             <th class="text-center">تخفیف کل</th>
             <th class="text-center">هزینه ارسال</th>
             <th class="text-center">مبلغ نهایی</th>
         </tr>
-        <tr class="" style="width: 300px">
+        <tr class="" >
             <td class="text-center"><?php echo $order->total_amount?></td>
             <td class="text-center"><?php echo $order->total_off?></td>
             <td class="text-center"><?php echo $order->delivery_amount?></td>
