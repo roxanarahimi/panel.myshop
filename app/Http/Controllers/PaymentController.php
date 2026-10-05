@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderPlacedMail;
-use App\Mail\OrderUpdatedMail;
 use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Response;
