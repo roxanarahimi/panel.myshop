@@ -38,7 +38,7 @@
 </div>
 <table class="table border mb-0">
     <tbody>
-    <?php foreach ($order->items as $item) ?>
+    <?php foreach ($order->items as $item){ ?>
     <tr class="">
         <td class="position-relative" style="width: 120px">
             <input class="d-none" type="hidden" value="<?php echo $item->id?>" name="items">
@@ -71,7 +71,7 @@
             </div>
         </td>
     </tr>
-    <?php endforeach ?>
+    <?php } ?>
     </tbody>
 </table>
 <div class="border border-top-0 ">
