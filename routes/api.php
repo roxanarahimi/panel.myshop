@@ -62,6 +62,6 @@ Route::controller(App\Http\Controllers\ShopController::class)->group(function ()
 Route::controller(App\Http\Controllers\PaymentController::class)->group(function () {
     Route::post('user/pay', 'redirectToGateway');
     Route::post('verify/payment', 'verifyPayment');
-    Route::post('test/{id}', 'test');
+    Route::get('test/{id}', 'test');
 });
 
