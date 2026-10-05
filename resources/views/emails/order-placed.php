@@ -18,19 +18,22 @@
     سفارشت ثبت شد.
 </p>
 
-<div class="border border-bottom-0">
+<div class="" style="border-bottom: 1px solid lightgrey" >
     <table class="table table-borderless mb-0 w-100">
         <tbody class="">
         <tr class="">
             <th scope="col">شماره سفارش</th>
             <td scope="row"><?php echo $order->code ?></td>
-            <th scope="col">تاریخ ثبت</th>
+        </tr>
+        <tr class="">
+
+        <th scope="col">تاریخ ثبت</th>
             <td><?php echo $order->payed_at ?></td>
         </tr>
         </tbody>
     </table>
 </div>
-<table class="table border mb-0" style="width: 350px">
+<table class="table border mb-0" style="width: 100%">
     <tbody>
     <?php foreach ($order->items as $item) { ?>
         <tr class="">
@@ -69,7 +72,7 @@
     </tbody>
 </table>
 <div class="border border-top-0 ">
-    <table class="table table-borderless" style="width: 350px">
+    <table class="table table-borderless" style="width: 100%px">
         <tbody class="">
         <tr class="">
             <th class="text-center">جمع کل</th>
