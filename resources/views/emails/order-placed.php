@@ -43,7 +43,7 @@
                 </tbody>
             </table>
         </div>
-        <table class="table border mb-0" style="width: 100%; border: 1px solid lightgrey; border-radius: 2px !important">
+        <table class="table border mb-0 rounded rounded-1" style="width: 100%; border: 1px solid lightgrey; border-radius: 2px !important">
             <tbody>
             <?php foreach ($order->items as $item) { ?>
                 <tr class="">
