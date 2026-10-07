@@ -6,17 +6,25 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous">
     <title>سفارش ثبت شد</title>
+    <style>
+        * {
+            text-align: right !important;
+            direction: rtl !important;
+            font-family: Tahoma, Rosemary !important
+        }
+    </style>
 </head>
-<body style="text-align: right !important; direction: rtl !important; font-family: Tahoma, Rosemary !important">
+<body>
 <h2>سلام <?php echo explode(' ', $order->user->name)[0] ?></h2>
 
 <p>
     سفارشت ثبت شد.
 </p>
 
-<div class="" style="border-bottom: 1px solid lightgrey" >
+<div class="" style="border-bottom: 1px solid lightgrey">
     <table class="table table-borderless mb-0 w-100" style="border: none !important">
         <tbody class="">
         <tr class="">
@@ -25,7 +33,7 @@
         </tr>
         <tr class="">
 
-        <th scope="col">تاریخ ثبت</th>
+            <th scope="col">تاریخ ثبت</th>
             <td><?php echo $order->payed_at ?></td>
         </tr>
         </tbody>
@@ -53,9 +61,9 @@
                         <?php echo $item->product->size ?>
                     </small>
                     <?php if ($item->off > 0) { ?>
-                    <div class="text-right text-black-50">
-                        <small><i class="bi bi-coin ms-2"></i><?php echo $item->price ?></small>
-                    </div>
+                        <div class="text-right text-black-50">
+                            <small><i class="bi bi-coin ms-2"></i><?php echo $item->price ?></small>
+                        </div>
                         <div class="text-right text-black-50">
                             <small> <i class="bi bi-gift ms-2"></i><?php echo $item->off ?>%</small>
                         </div>
@@ -97,6 +105,8 @@
     <br>
     RXShop
 </p>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
