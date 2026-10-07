@@ -13,7 +13,7 @@
         * {
             text-align: right !important;
             direction: rtl !important;
-            font-family: Tahoma, Rosemary !important
+            font-family: Tahoma, serif !important
         }
     </style>
 </head>
