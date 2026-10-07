@@ -28,7 +28,7 @@
         </p>
 
 
-        <div class="" style="border-bottom: 1px solid lightgrey">
+        <div class="">
             <table class="table table-borderless mb-0 w-100" style="border: none !important">
                 <tbody class="">
                 <tr class="">
@@ -43,7 +43,7 @@
                 </tbody>
             </table>
         </div>
-        <table class="table border mb-0" style="width: 100%; border: 1px solid lightgrey">
+        <table class="table border mb-0" style="width: 100%; border: 1px solid lightgrey; border-radius: 2px !important">
             <tbody>
             <?php foreach ($order->items as $item) { ?>
                 <tr class="">
