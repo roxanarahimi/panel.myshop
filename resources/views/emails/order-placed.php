@@ -34,7 +34,7 @@
         <tr class="">
 
             <th scope="col">تاریخ ثبت</th>
-            <td><?php echo $order->payed_at ?></td>
+            <td><?php echo explode(' ',$order->payed_at)[0] ?></td>
         </tr>
         </tbody>
     </table>
