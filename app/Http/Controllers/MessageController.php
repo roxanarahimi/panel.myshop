@@ -93,7 +93,7 @@ class MessageController extends Controller
             curl_close($curl);
 
 
-            return [$result, $result->success()];
+            return $result;
 
             $array = json_decode($result, true);
 
