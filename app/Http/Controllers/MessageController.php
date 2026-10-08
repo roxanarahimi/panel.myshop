@@ -91,14 +91,14 @@ class MessageController extends Controller
 
             $result = curl_exec($curl);
             curl_close($curl);
+//
+//
+////            echo $result;
+////            return response($result,200);
+//
+//            $array = gettype($result);
 
-
-//            echo $result;
-//            return response($result,200);
-
-            $array = gettype($result);
-
-            return response($array, 200);
+            return response($result, 200);
 
 
         } catch (\Exception $e) {
