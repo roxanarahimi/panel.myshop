@@ -23,7 +23,7 @@ class OrderPlacedMail extends Mailable
     {
         return $this
             ->from('noreply@rxshop.ir', 'RXShop')
-            ->subject('سفارش ثبت شد')
+            ->subject('ثبت سفارش')
             ->view('emails.order-placed');
     }
     /**
