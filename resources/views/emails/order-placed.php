@@ -104,19 +104,17 @@
                 </tbody>
             </table>
         </div>
-        <a href="https://rxshop.ir/factor/<?php echo $order->code ?>"
-           class="btn btn-sm btn-block bg-primary d-block text-light">مشاهده فاکتور</a>
+        <a href="https://rxshop.ir/factor/<?php echo $order->code ?>" class="btn btn-sm btn-block bg-primary d-block text-light">مشاهده فاکتور</a>
 
     </div>
 </div>
+<p><a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
 <div style=" display: flex; justify-content: space-between!important;width: 100%; text-align: right; background-color: #F8F9FB; padding: 10px 20px">
     <div style="width: max-content">
         <p style="margin: 0 !important">از خریدت متشکریم</p>
         <p style="text-align: left !important;margin: 0 !important">RXShop</p>
     </div>
-    <a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+</div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 </body>
