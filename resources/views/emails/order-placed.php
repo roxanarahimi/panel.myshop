@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css"
           integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous">
-    <title>سفارش ثبت شد</title>
+    <title>ثبت سفارش</title>
     <style>
         * {
             text-align: right !important;
@@ -18,6 +18,9 @@
     </style>
 </head>
 <body>
+<div style="width: 100%; text-align: right">
+    <img src="/img/rx.jpg" width="150px" alt="">
+</div>
 <div class="row justify-content-center w-100">
 <div class="col-12 col-md-8" style="width:100%; max-width: 500px !important; margin:0 auto !important">
 
