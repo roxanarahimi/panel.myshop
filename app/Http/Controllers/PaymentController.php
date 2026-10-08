@@ -71,11 +71,10 @@ class PaymentController extends Controller
                     "status" => 'payed',
                 ]);
 
-                $text = $order->user->name . ' عزیز،
-                سفارشت با کد ' . $code . 'با موفقیت ثبت شد.';
                 $sms = new Request([
                     'mobile' => $order->user->mobile,
-                    'text' => $text,
+                    'code' => $code,
+                    'status' => 'ثبت شد',
                     'templateId' => '582484',
                 ]);
 
@@ -111,6 +110,16 @@ class PaymentController extends Controller
         $order = Order::findOrFail($id);
         Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
+
+        $sms = new Request([
+            'mobile' => $order->user->mobile,
+            'code' => $order->code,
+            'status' => 'ثبت شد',
+            'templateId' => '582484',
+        ]);
+
+        $controller = new MessageController();
+        $controller->sendSmsIR($sms);
 
     }
 }
