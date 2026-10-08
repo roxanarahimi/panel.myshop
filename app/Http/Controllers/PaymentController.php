@@ -101,7 +101,7 @@ class PaymentController extends Controller
     public function test($id)
     {
         $order = Order::findOrFail($id);
-        Mail::to($order->user->email)
+        $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
         $sms = new Request([
@@ -117,7 +117,7 @@ class PaymentController extends Controller
         ]);
 
         $controller = new MessageController();
-        $sms2 = $controller->sendStatusSmsIR($sms);
-        echo $sms2;
+        $sendSms = $controller->sendStatusSmsIR($sms);
+        return response([$mail, $sendSms], 200);
     }
 }
