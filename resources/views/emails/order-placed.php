@@ -21,7 +21,7 @@
 <div class="row justify-content-center w-100">
 <div class="col-12 col-md-8" style="width:100%; max-width: 500px !important; margin:0 auto !important">
 
-        <h2>سلام <?php echo explode(' ', $order->user->name)[0] ?></h2>
+    <h2>سلام <?php echo explode(' ', $order->user->name)[0] ?> عزیز </h2>
 
         <p>
             سفارشت ثبت شد.
