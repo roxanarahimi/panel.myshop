@@ -22,7 +22,7 @@
     <img src="https://panel.rxshop.ir/img/rx.jpg" width="150px" alt="">
 </div>
 <div class="row justify-content-center w-100">
-<div class="col-12 col-md-8" style="width:100%; max-width: 500px !important; margin:0 auto !important">
+<div class="col-12" style="width:100%;!important">
 
     <h2>سلام <?php echo explode(' ', $order->user->name)[0] ?> عزیز </h2>
 
@@ -107,13 +107,14 @@
         <a href="https://rxshop.ir/factor/<?php echo $order->code ?>"
            class="btn btn-sm btn-block bg-primary d-block text-light">مشاهده فاکتور</a>
 
-
-        <p>
-            از خریدت متشکریم
-            <br>
-            RXShop
-        </p>
     </div>
+</div>
+<div style="width: 100%; text-align: right; background-color: #F8F9FB">
+    <p>
+        از خریدت متشکریم
+        <br>
+        RXShop
+    </p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
