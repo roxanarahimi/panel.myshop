@@ -15,8 +15,14 @@ class MessageController extends Controller
 
             $mobile = $request['mobile'];
             $code = $request['code'];
-
+            $params = [
+                [ "name"=>"CODE", "value"=> $code ],
+            ];
+            if ($request['status']){
+                $params[] = [ "name"=>"STATUS", "value"=> $request['status'] ];
+            }
             $curl = curl_init();
+
 
             curl_setopt_array($curl, array(
                 CURLOPT_URL => 'https://api.sms.ir/v1/send/verify',
@@ -30,9 +36,7 @@ class MessageController extends Controller
                 CURLOPT_POSTFIELDS =>'{
         "mobile": "'.$mobile.'",
         "templateId": "'.$request['templateId'].'",
-        "parameters": [
-          {  "name":"CODE", "value": '.$code.' }
-        ]
+        "parameters": '.json_encode($params,true).'
       }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
