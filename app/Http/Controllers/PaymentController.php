@@ -104,16 +104,15 @@ class PaymentController extends Controller
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
+        $text = $order->user->name.' عزیز
+                سفارشت با موفقیت ثبت شد
+                شماره سفارش: '.$order->code.'
+                از خریدت متشکریم.';
+
         $sms = new Request([
-            'name' => $order->user->name,
             'mobile' => $order->user->mobile,
-            'code' => '',
-            'number' => $order->code,
-            'status' => 'ثبت شد',
-            'templateId' => '582484',
-//            'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
-            'apiKey' => 'PN1TVeBeaAehFLJAKU4XdfpsFXsQguYfleO0bV4ceh6diTZid2hRXza3uSkBbDef',
-            'url' => 'https://api.sms.ir/v1/templates/582484',
+            'text' => $text,
+            'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
 
         $controller = new MessageController();
