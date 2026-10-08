@@ -119,7 +119,7 @@ class PaymentController extends Controller
         ]);
 
         $controller = new MessageController();
-        $controller->sendSmsIR($sms);
-
+        $sms = $controller->sendSmsIR($sms);
+        return $sms;
     }
 }
