@@ -71,7 +71,7 @@ class PaymentController extends Controller
                     "status" => 'payed',
                 ]);
 
-                Mail::to($order->user->email)
+                $mail = Mail::to($order->user->email)
                     ->send(new OrderPlacedMail($order));
 
                 $text = $order->user->name.' عزیز
@@ -86,9 +86,12 @@ class PaymentController extends Controller
                 ]);
 
                 $controller = new MessageController();
-                $sms2 = $controller->sendTextSmsIR($sms);
+                $send = $controller->sendTextSmsIR($sms);
+
+                return response([$response,$mail, $send], 200);
+
             }
-            return response(['title' => '', 'message' => $response->error()->message()], $response->error()->code());
+            return response(['message' => $response->error()->message()], $response->error()->code());
 
         } catch (\Exception $exception) {
             return response(['title' => '', 'message' => $exception->getMessage(), 'data' => $exception], 500);
