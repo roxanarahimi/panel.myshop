@@ -76,7 +76,7 @@ class PaymentController extends Controller
                     'code' => $code,
                     'status' => 'ثبت شد',
                     'templateId' => '582484',
-                    'apiKey' => 'PN1TVeBeaAehFLJAKU4XdfpsFXsQguYfleO0bV4ceh6diTZid2hRXza3uSkBbDef',
+                    'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
                 ]);
 
                 $controller = new UserController();
