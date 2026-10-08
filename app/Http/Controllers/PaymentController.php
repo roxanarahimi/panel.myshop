@@ -77,6 +77,7 @@ class PaymentController extends Controller
                     'status' => 'ثبت شد',
                     'templateId' => '582484',
                     'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
+                    'url' => 'https://api.sms.ir/v1/templates/582484',
                 ]);
 
                 $controller = new UserController();

@@ -23,9 +23,9 @@ class MessageController extends Controller
             }
             $curl = curl_init();
 
-
+//            'https://api.sms.ir/v1/send/verify'
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.sms.ir/v1/send/verify',
+                CURLOPT_URL => $request['url'],
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
