@@ -15,20 +15,11 @@ class MessageController extends Controller
 
             $mobile = $request['mobile'];
             $code = $request['code'];
-            $params = [
-                [ "name"=>"CODE", "value"=> $code ],
-            ];
-            if ($request['status']){
-                $params[] = [ "name"=>"STATUS", "value"=> $request['status'] ];
-            }
-            if ($request['number']){
-                $params[] = [ "name"=>"NUMBER", "value"=> $request['number'] ];
-            }
+
             $curl = curl_init();
 
-//            'https://api.sms.ir/v1/send/verify'
             curl_setopt_array($curl, array(
-                CURLOPT_URL => $request['url'],
+                CURLOPT_URL => 'https://api.sms.ir/v1/send/verify',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -39,17 +30,19 @@ class MessageController extends Controller
                 CURLOPT_POSTFIELDS =>'{
         "mobile": "'.$mobile.'",
         "templateId": "'.$request['templateId'].'",
-        "parameters": '.json_encode($params,true).'
+        "parameters": [
+          {  "name":"CODE", "value": '.$code.' }
+        ]
       }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: '.$request["apiKey"]
+                    'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
                 ),
             ));
+
             $result = curl_exec($curl);
             curl_close($curl);
-//            'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
 
 //            return response($result,500);
             $array = json_decode($result, true);
@@ -76,6 +69,35 @@ class MessageController extends Controller
             // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
             return response($e,$e->getCode());
         }
+    }
+
+    public function sendStatusSmsIR(Request $request): Response
+    {
+
+        $text='in yek test ast';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.sms.ir/v1/send?username='.$request['name'].'&password='.$request['apyKey'].'&mobile='.$request['mobile'].'&line=1&text='.$text,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Accept: text/plain'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
+
     }
     public function sendEmail(Request $request): Response
     {
