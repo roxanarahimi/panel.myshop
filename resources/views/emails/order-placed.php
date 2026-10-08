@@ -109,7 +109,7 @@
     </div>
 </div>
 <p style="width: 100% ; text-align: left"><a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
-<div style=" display: flex; justify-content: space-between!important;width: 100%; text-align: right; background-color: #F8F9FB; padding: 10px 20px">
+<div style="width: 100%; background-color: #F8F9FB; padding: 10px 20px">
     <p style="width: 100%;text-align: left;margin: 0 !important">از خریدت متشکریم</p>
     <p style="width: 100%;text-align: left !important;margin: 0 !important">RXShop</p>
 </div>
