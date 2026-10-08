@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<div style="width: 100%; text-align: right; background-color: whitesmoke">
+<div style="width: 100%; text-align: right; background-color: #F8F9FB">
     <img src="https://panel.rxshop.ir/img/rx.jpg" width="150px" alt="">
 </div>
 <div class="row justify-content-center w-100">
