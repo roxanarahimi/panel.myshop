@@ -18,8 +18,8 @@
     </style>
 </head>
 <body>
-<div style="width: 100%; text-align: right">
-    <img src="/img/rx.jpg" width="150px" alt="">
+<div style="width: 100%; text-align: right; background-color: whitesmoke">
+    <img src="/public/img/rx.jpg" width="150px" alt="">
 </div>
 <div class="row justify-content-center w-100">
 <div class="col-12 col-md-8" style="width:100%; max-width: 500px !important; margin:0 auto !important">
