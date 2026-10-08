@@ -115,6 +115,7 @@ class PaymentController extends Controller
             ->send(new OrderPlacedMail($order));
 
         $sms = new Request([
+            'name' => $order->user->name,
             'mobile' => $order->user->mobile,
             'code' => '',
             'number' => $order->code,
