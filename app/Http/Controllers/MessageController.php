@@ -71,7 +71,7 @@ class MessageController extends Controller
         }
     }
 
-    public function sendStatusSmsIR(Request $request): Response
+    public function sendStatusSmsIR(Request $request)
     {
 
         $text='in yek test ast';
