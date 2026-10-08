@@ -31,7 +31,7 @@ class UserController extends Controller
 
 
             $controller = new MessageController();
-            $send = $controller->sendSmsIR($sms);
+            $send = $controller->sendOTPSmsIR($sms);
 
             if ($send->getStatusCode() === 200) {
                 return response(['message' => 'کد تایید ارسال شد.','sms sending status'=>true], 200);

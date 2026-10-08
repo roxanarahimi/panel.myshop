@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
-    public function sendSmsIR(Request $request): Response
+    public function sendOTPSmsIR(Request $request): Response
     {
         try {
 
@@ -110,6 +110,7 @@ class MessageController extends Controller
 
 
     }
+
     public function sendEmail(Request $request): Response
     {
         try {
@@ -133,15 +134,10 @@ class MessageController extends Controller
             }
 
 
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e,$e->getCode());
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
+        } catch (\Exception $e) {
             return response($e,$e->getCode());
         }
     }
-
 
     public function sendSmsKaveh(Request $request): Response
     {
