@@ -92,9 +92,6 @@ class MessageController extends Controller
             ),
         ));
 
-        $response = curl_exec($curl);
-
-        curl_close($curl);
         $result = curl_exec($curl);
         curl_close($curl);
 
