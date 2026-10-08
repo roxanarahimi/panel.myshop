@@ -41,12 +41,12 @@ class MessageController extends Controller
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
+                    'x-api-key: '.$request["apiKey"]
                 ),
             ));
-
             $result = curl_exec($curl);
             curl_close($curl);
+//            'x-api-key: QxSlqi62v2v8ILZJoWqAdlolbZhq5fv4HQyf7XukJ8RmytTP'
 
 //            return response($result,500);
             $array = json_decode($result, true);
