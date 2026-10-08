@@ -105,7 +105,7 @@ class MessageController extends Controller
                 ];
                 return response($info, 200);
             } else {
-                return response($result, 500);
+                return response($array, 500);
             }
 
         }catch (\Exception $e) {
