@@ -95,7 +95,25 @@ class MessageController extends Controller
         $response = curl_exec($curl);
 
         curl_close($curl);
-        echo $response;
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+//            return response($result,500);
+        $array = json_decode($result, true);
+
+
+        if ($result && $array['status'] ===1) {
+            $info = [
+                "messageid" => $array['data']['messageId'],
+                "message" => $array['message'],
+                "status" => $array['status'],
+                "cost" => $array['data']['cost']
+            ];
+            return response($info, 200);
+        } else {
+            return response($result, 500);
+        }
+
 
 
     }
