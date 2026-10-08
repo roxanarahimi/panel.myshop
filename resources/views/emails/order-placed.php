@@ -110,8 +110,8 @@
 </div>
 <p style="width: 100% ; text-align: left !important"><a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
 <div style="width: 100%; background-color: #F8F9FB; padding: 10px 0 !important">
-    <p style="margin:0 !important; padding: 0 10px !important; width: 100% !important;text-align: left !important">از خریدت متشکریم</p>
-    <p style="margin:0 !important; padding: 0 10px !important; width: 100% !important;text-align: left !important">RXShop</p>
+    <p style="margin:0 !important; padding: 0 0 0 10px !important; width: 100% !important;text-align: left !important">از خریدت متشکریم</p>
+    <p style="margin:0 !important; padding: 0 0 0 10px !important; width: 100% !important;text-align: left !important">RXShop</p>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
