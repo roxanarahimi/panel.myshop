@@ -15,6 +15,9 @@
     </style>
 </head>
 <body>
+<div style="width: 100%; text-align: right; background-color: #F8F9FB">
+    <img src="https://panel.rxshop.ir/img/rx.jpg" width="150px" alt="">
+</div>
 <div class="row justify-content-center">
     <div class="col-12" style="width:100%;!important">
 
@@ -34,12 +37,15 @@
             <?php echo $order->post_tracking_number ?>
         </p>
 
-        <p>
-            از خریدت متشکریم
-            <br>
-            RXShop
-        </p>
     </div>
 </div>
+<div style="width: 100%; text-align: right; background-color: #F8F9FB; padding: 20px">
+    <p>
+        از خریدت متشکریم
+        <br>
+        RXShop
+    </p>
+</div>
+
 </body>
 </html>

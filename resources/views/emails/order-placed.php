@@ -109,7 +109,7 @@
 
     </div>
 </div>
-<div style="width: 100%; text-align: right; background-color: #F8F9FB">
+<div style="width: 100%; text-align: right; background-color: #F8F9FB; padding: 20px">
     <p>
         از خریدت متشکریم
         <br>
