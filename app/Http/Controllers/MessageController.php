@@ -96,7 +96,7 @@ class MessageController extends Controller
 //            echo $result;
 //            return response($result,200);
 
-            $array = typeOf($result);
+            $array = gettype($result);
 
             return response($array, 200);
 
