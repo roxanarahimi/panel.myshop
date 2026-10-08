@@ -117,6 +117,6 @@ class PaymentController extends Controller
 
         $controller = new MessageController();
         $sendSms = $controller->sendTextSmsIR($sms);
-        return response([$mail, $sendSms], 200);
+        return response($sendSms, 200);
     }
 }
