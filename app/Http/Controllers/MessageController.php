@@ -98,18 +98,11 @@ class MessageController extends Controller
 
             $array = json_decode($result, true);
 
+            $status = explode(' ',$array['0'])[1];
 
-            if ($result && $array['status'] ===1) {
-                $info = [
-                    "messageid" => $array['data']['messageId'],
-                    "message" => $array['message'],
-                    "status" => $array['status'],
-                    "cost" => $array['data']['cost']
-                ];
-                return response($info, 200);
-            } else {
-                return response($array, 500);
-            }
+
+                return response($array, $status);
+
 
         }catch (\Exception $e) {
             return response($e,$e->getCode());
