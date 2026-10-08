@@ -39,13 +39,11 @@
 
     </div>
 </div>
-<div style="width: 100%; text-align: right; background-color: #F8F9FB; padding: 10px 20px">
-    <p>
-        از خریدت متشکریم
-        <br>
-        RXShop
-    </p>
+<div style=" display: flex;width: 100%; text-align: right; background-color: #F8F9FB; padding: 10px 20px">
+    <div style="width: max-content">
+        <p>از خریدت متشکریم</p>
+        <p style="text-align: left !important">RXShop</p>
+    </div>
 </div>
-
 </body>
 </html>
