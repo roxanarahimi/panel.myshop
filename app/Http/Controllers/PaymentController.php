@@ -74,6 +74,7 @@ class PaymentController extends Controller
                 $sms = new Request([
                     'mobile' => $order->user->mobile,
                     'code' => $code,
+                    'number' => $order->code,
                     'status' => 'ثبت شد',
                     'templateId' => '582484',
                     'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
@@ -115,9 +116,12 @@ class PaymentController extends Controller
 
         $sms = new Request([
             'mobile' => $order->user->mobile,
-            'code' => $order->code,
+            'code' => '',
+            'number' => $order->code,
             'status' => 'ثبت شد',
             'templateId' => '582484',
+            'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
+            'url' => 'https://api.sms.ir/v1/templates/582484',
         ]);
 
         $controller = new MessageController();

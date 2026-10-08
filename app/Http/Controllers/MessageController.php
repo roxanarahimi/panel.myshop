@@ -21,6 +21,9 @@ class MessageController extends Controller
             if ($request['status']){
                 $params[] = [ "name"=>"STATUS", "value"=> $request['status'] ];
             }
+            if ($request['number']){
+                $params[] = [ "name"=>"NUMBER", "value"=> $request['number'] ];
+            }
             $curl = curl_init();
 
 //            'https://api.sms.ir/v1/send/verify'
