@@ -94,14 +94,11 @@ class MessageController extends Controller
 
 
 //            echo $result;
-            return response($result,200);
+//            return response($result,200);
 
             $array = json_decode($result, true);
 
-            $status = explode(' ', $array[0])[1];
-
-
-            return response($array, $status);
+            return response($array, 200);
 
 
         } catch (\Exception $e) {
