@@ -27,11 +27,11 @@ class MessageController extends Controller
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS =>'{
-        "mobile": "'.$mobile.'",
-        "templateId": "'.$request['templateId'].'",
+                CURLOPT_POSTFIELDS => '{
+        "mobile": "' . $mobile . '",
+        "templateId": "' . $request['templateId'] . '",
         "parameters": [
-          {  "name":"CODE", "value": '.$code.' }
+          {  "name":"CODE", "value": ' . $code . ' }
         ]
       }',
                 CURLOPT_HTTPHEADER => array(
@@ -49,7 +49,7 @@ class MessageController extends Controller
 
             Cache::put($mobile, $code, 60);
 
-            if ($result && $array['status'] ===1) {
+            if ($result && $array['status'] === 1) {
                 $info = [
                     "messageid" => $array['data']['messageId'],
                     "message" => $array['message'],
@@ -63,20 +63,20 @@ class MessageController extends Controller
 
 
         } catch (\Exception $e) {
-            return response($e,$e->getCode());
+            return response($e, $e->getCode());
         }
     }
 
-    public function sendStatusSmsIR(Request $request)
+    public function sendTextSmsIR(Request $request)
     {
 
         try {
-            $text='in yek test ast';
+            $text = 'in yek test ast';
 
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.sms.ir/v1/send?username='.$request['name'].'&password='.$request['apyKey'].'&mobile='.$request['mobile'].'&line=30002108039135&text='.$text,
+                CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $request['apyKey'] . '&mobile=' . $request['mobile'] . '&line=30002108039135&text=' . $text,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -92,20 +92,18 @@ class MessageController extends Controller
             $result = curl_exec($curl);
             curl_close($curl);
 
-//            echo $result;
 
-            return response($result,200);
+//            return response($result,200);
 
             $array = json_decode($result, true);
 
-            $status = explode(' ',$array['0'])[1];
+            $status = explode(' ', $array['0'])[1];
+
+            return response($array, $status);
 
 
-                return response($array, $status);
-
-
-        }catch (\Exception $e) {
-            return response($e,$e->getCode());
+        } catch (\Exception $e) {
+            return response($e, $e->getCode());
         }
 
 
@@ -127,7 +125,7 @@ class MessageController extends Controller
             });
 
 
-            if ($result && $result['status'] ===200) {
+            if ($result && $result['status'] === 200) {
                 return response($result, 200);
             } else {
                 return response($result, 500);
@@ -135,7 +133,7 @@ class MessageController extends Controller
 
 
         } catch (\Exception $e) {
-            return response($e,$e->getCode());
+            return response($e, $e->getCode());
         }
     }
 
@@ -166,10 +164,10 @@ class MessageController extends Controller
 
         } catch (\Kavenegar\Exceptions\ApiException $e) {
             // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e,$e->getCode());
+            return response($e, $e->getCode());
         } catch (\Kavenegar\Exceptions\HttpException $e) {
             // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
-            return response($e,$e->getCode());
+            return response($e, $e->getCode());
         }
     }
 }

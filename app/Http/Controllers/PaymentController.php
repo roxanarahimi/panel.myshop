@@ -71,35 +71,22 @@ class PaymentController extends Controller
                     "status" => 'payed',
                 ]);
 
+                Mail::to($order->user->email)
+                    ->send(new OrderPlacedMail($order));
+
+                $text = $order->user->name.' عزیز
+                سفارشت با موفقیت ثبت شد
+                شماره سفارش: '.$order->code.'
+                از خریدت متشکریم.';
+
                 $sms = new Request([
                     'mobile' => $order->user->mobile,
-                    'code' => $code,
-                    'number' => $order->code,
-                    'status' => 'ثبت شد',
-                    'templateId' => '582484',
-                    'apiKey' => 'YdS9VGLVAYbjCvr7xgwH9fo0cqdkHyH2EsuwDHdB3G0KS3pD',
-                    'url' => 'https://api.sms.ir/v1/templates/582484',
+                    'text' => $text,
+                    'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
                 ]);
 
-                $controller = new UserController();
-                $send = $controller->sendSmsIR($sms);
-
-                if ($send->getStatusCode() === 200) {
-                    $smsSent = true;
-                } else {
-                    $smsSent = false;
-                }
-                return response([
-                    "cardHash" => $response->cardHash(),// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
-                    "cardPan" => $response->cardPan(),// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
-                    "referenceId" => $response->referenceId(),// پرداخت موفقیت آمیز بود
-                    "name" => $order->user->name,
-                    "code" => $order->code,
-                    "amount" => $order->amount,
-                    "title" => 'پرداخت موفق',
-                    "message" => 'سفارش با موفقیت ثبت شد',
-                    "smsSent" => $smsSent,
-                ], 200);
+                $controller = new MessageController();
+                $sms2 = $controller->sendTextSmsIR($sms);
             }
             return response(['title' => '', 'message' => $response->error()->message()], $response->error()->code());
 

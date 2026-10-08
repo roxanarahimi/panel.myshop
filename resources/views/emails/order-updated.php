@@ -41,9 +41,9 @@
     </div>
 </div>
 <p style="width: 100% ; text-align: left !important"><a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
-<div style="width: 100%; background-color: #F8F9FB; padding: 10px 0">
-    <p style="padding-left:20px !important; width: 100%;text-align: left !important;margin: 0 !important">از خریدت متشکریم</p>
-    <p style="padding-left:20px !important; width: 100%;text-align: left !important;margin: 0 !important">RXShop</p>
+<div style="width: 100%; background-color: #F8F9FB; padding: 10px 0 !important">
+    <p style="margin:0 !important; padding: 0 0 0 10px !important;text-align: left !important">از خریدت متشکریم</p>
+    <p style="margin:0 !important; padding: 0 0 0 10px !important;text-align: left !important">RXShop</p>
 </div>
 </body>
 </html>
