@@ -53,7 +53,7 @@
                             <img class="" width="80px" height="80px"
                                  src="<?php echo 'https://panel.rxshop.ir/storage/' . $item->product->info->images[0] ?>"/>
                         </a>
-                        <div class="text-center text-left " style="position: absolute; bottom: 30px; left: 30px">
+                        <div class="text-center text-left " style=" text-align:left !important; position: absolute; bottom: 30px; left: 30px">
                             <div class="cart-badge-2"><?php echo $item->quantity ?></div>
                         </div>
                     </td>
