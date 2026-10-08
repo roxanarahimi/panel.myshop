@@ -53,8 +53,8 @@
                             <img class="" width="80px" height="80px"
                                  src="<?php echo 'https://panel.rxshop.ir/storage/' . $item->product->info->images[0] ?>"/>
                         </a>
-                        <div class="" style=" width: 100% !important; display:flex !important; justify-content: center !important; position: absolute; bottom: 30px; left: 30px">
-                            <div class="cart-badge-2" style="background-color: black;color:white;width: 20px; height: 20px; border-radius: 50px; text-align: center !important"><?php echo $item->quantity ?></div>
+                        <div class="" style="text-align: center !important; position: absolute; bottom: 30px; left: 30px">
+                            <div class="cart-badge-2" style="margin: 0 auto !important; background-color: black;color:white;width: 20px; height: 20px; border-radius: 50px; text-align: center !important"><?php echo $item->quantity ?></div>
                         </div>
                     </td>
                     <td class="text-right align-content-start align-top">
