@@ -103,7 +103,7 @@ class MessageController extends Controller
 
 
         } catch (\Exception $e) {
-            return response($e, $e->getCode());
+            return response($e, 500);
         }
 
 
