@@ -96,7 +96,7 @@ class MessageController extends Controller
 //            echo $result;
 //            return response($result,200);
 
-            $array = json_decode($result, true);
+            $array = json_encode($result, true);
 
             return response($array, 200);
 
