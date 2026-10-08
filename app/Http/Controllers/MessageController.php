@@ -62,11 +62,7 @@ class MessageController extends Controller
             }
 
 
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e,$e->getCode());
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
+        } catch (\Exception $e) {
             return response($e,$e->getCode());
         }
     }
@@ -74,43 +70,47 @@ class MessageController extends Controller
     public function sendStatusSmsIR(Request $request)
     {
 
-        $text='in yek test ast';
+        try {
+            $text='in yek test ast';
 
-        $curl = curl_init();
+            $curl = curl_init();
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.sms.ir/v1/send?username='.$request['name'].'&password='.$request['apyKey'].'&mobile='.$request['mobile'].'&line=1&text='.$text,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Accept: text/plain'
-            ),
-        ));
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.sms.ir/v1/send?username='.$request['name'].'&password='.$request['apyKey'].'&mobile='.$request['mobile'].'&line=1&text='.$text,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+                CURLOPT_HTTPHEADER => array(
+                    'Accept: text/plain'
+                ),
+            ));
 
-        $result = curl_exec($curl);
-        curl_close($curl);
+            $result = curl_exec($curl);
+            curl_close($curl);
 
 //            return response($result,500);
-        $array = json_decode($result, true);
+            $array = json_decode($result, true);
 
 
-        if ($result && $array['status'] ===1) {
-            $info = [
-                "messageid" => $array['data']['messageId'],
-                "message" => $array['message'],
-                "status" => $array['status'],
-                "cost" => $array['data']['cost']
-            ];
-            return response($info, 200);
-        } else {
-            return response($result, 500);
+            if ($result && $array['status'] ===1) {
+                $info = [
+                    "messageid" => $array['data']['messageId'],
+                    "message" => $array['message'],
+                    "status" => $array['status'],
+                    "cost" => $array['data']['cost']
+                ];
+                return response($info, 200);
+            } else {
+                return response($result, 500);
+            }
+
+        }catch (\Exception $e) {
+            return response($e,$e->getCode());
         }
-
 
 
     }
