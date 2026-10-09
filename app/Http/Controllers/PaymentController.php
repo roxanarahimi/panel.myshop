@@ -112,13 +112,9 @@ class PaymentController extends Controller
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
 
-//        $controller = new MessageController();
-//        $sendSms = $controller->sendTextSmsIR($sms);
-
         $text = 'in yek test ast';
 
         $curl = curl_init();
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $apikey . '&mobile=' . $mobile . '&line=30002108039135&text=' . $text,
             CURLOPT_RETURNTRANSFER => true,
@@ -135,8 +131,8 @@ class PaymentController extends Controller
         ));
 
         $response = curl_exec($curl);
-
         curl_close($curl);
-        return $response;
+
+        echo $response;
     }
 }
