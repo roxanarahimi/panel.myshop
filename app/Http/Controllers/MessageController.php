@@ -66,7 +66,6 @@ class MessageController extends Controller
             return response($e, $e->getCode());
         }
     }
-
     public function sendTextSmsIR(Request $request)
     {
 
@@ -108,65 +107,4 @@ class MessageController extends Controller
 
     }
 
-    public function sendEmail(Request $request): Response
-    {
-        try {
-
-            $email = $request['email'];
-            $text = $request['text'];
-
-
-            $result = Mail::raw('سلام، این یک ایمیل تستی است.', function ($message) {
-                $message
-                    ->to('ms.roxanarahimi@gmail.com')
-                    ->subject('تست ارسال ایمیل')
-                    ->from('noreply@rxshop.ir', 'RX Shop');
-            });
-
-
-            if ($result && $result['status'] === 200) {
-                return response($result, 200);
-            } else {
-                return response($result, 500);
-            }
-
-
-        } catch (\Exception $e) {
-            return response($e, $e->getCode());
-        }
-    }
-
-    public function sendSmsKaveh(Request $request): Response
-    {
-        try {
-            $api = new \Kavenegar\KavenegarApi("4470686233536566795848666962306F59327335574D786772655075704668586C31415162524E717747413D");
-            $sender = "10008252";
-            $message = $request['message'];
-            $receptor = $request['mobile'];
-            $result = $api->Send($sender, $receptor, $message);
-            if ($result) {
-                $info = [
-                    "messageid" => $result[0]->messageid,
-                    "message" => $result[0]->message,
-                    "status" => $result[0]->status,
-                    "statustext" => $result[0]->statustext,
-                    "sender" => $result[0]->sender,
-                    "receptor" => $result[0]->receptor,
-                    "date" => $result[0]->date,
-                    "cost" => $result[0]->cost
-                ];
-
-            } else {
-                $info = $result;
-            }
-            return response($info, 200);
-
-        } catch (\Kavenegar\Exceptions\ApiException $e) {
-            // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
-            return response($e, $e->getCode());
-        } catch (\Kavenegar\Exceptions\HttpException $e) {
-            // در زمانی که مشکلی در برقرای ارتباط با وب سرویس وجود داشته باشد این خطا رخ می دهد
-            return response($e, $e->getCode());
-        }
-    }
 }

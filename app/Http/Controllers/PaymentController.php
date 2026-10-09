@@ -14,7 +14,6 @@ class PaymentController extends Controller
     public function redirectToGateway(Request $request): Response
     {
         try {
-            //        ارسال مشتری به درگاه پرداخت | Send customer to payment gateway
             $order = Order::find($request['order_id']);
             $response = zarinpal()
 //    ->merchantId('00000000-0000-0000-0000-000000000000') // تعیین مرچنت کد در حین اجرا - اختیاری
@@ -27,7 +26,6 @@ class PaymentController extends Controller
                 ->send();
 
             if (!$response->success()) {
-//            return $response->error()->message();
                 return response($response->error(), $response->error()->code());
             }
 
@@ -42,7 +40,6 @@ class PaymentController extends Controller
             return response($exception, $exception->getCode());
         }
     }
-
     public function verifyPayment(Request $request): Response
     {
         try {
@@ -97,7 +94,6 @@ class PaymentController extends Controller
             return response(['title' => '', 'message' => $exception->getMessage(), 'data' => $exception], 500);
         }
     }
-
     public function test($id)
     {
         $order = Order::findOrFail($id);
