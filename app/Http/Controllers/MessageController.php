@@ -84,7 +84,9 @@ class MessageController extends Controller
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'GET',
                 CURLOPT_HTTPHEADER => array(
-                    'Accept: text/plain'
+                    'Content-Type: application/json',
+                    'Accept: text/plain',
+                    'x-api-key: '.$request['apyKey']
                 ),
             ));
 
