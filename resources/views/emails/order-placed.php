@@ -49,7 +49,7 @@
         <table class="table border mb-0 rounded-3" style="width: 100%; border: 1px solid lightgrey; border-radius: 2px !important">
             <tbody>
             <?php foreach ($order->items as $item) { ?>
-                <tr class="">
+                <tr class="" style="border-bottom: 1px solid lightgray">
                     <td class="position-relative">
                         <a href="'https://rxshop.ir/product/'<?php echo $item->product->info->slug ?>"
                            style="width: 80px">
