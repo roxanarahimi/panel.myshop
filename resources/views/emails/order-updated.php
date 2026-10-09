@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>بروز رسانی وضعیت سفارش</title>
+    <title>بروز رسانی سفارش</title>
     <style>
         * {
             text-align: right !important;
@@ -40,7 +40,7 @@
 
     </div>
 </div>
-<p style="width: 100% ; text-align: left !important"><a href="https://rxshop.ir" style="color: black; text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
+<p style="width: 100% ; text-align: left !important"><a href="https://rxshop.ir" style="text-align: left !important;margin: 0 !important">https://rxshop.ir</a></p>
 <div style="width: 100%; background-color: #F8F9FB; padding: 10px 0 !important">
     <p style="margin:0 !important; padding: 0 0 0 10px !important;text-align: left !important">از خریدت متشکریم</p>
     <p style="margin:0 !important; padding: 0 0 0 10px !important;text-align: left !important">RXShop</p>
