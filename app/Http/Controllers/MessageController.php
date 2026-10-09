@@ -76,7 +76,6 @@ class MessageController extends Controller
 
             curl_setopt_array($curl, array(
                 CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $request['apyKey'] . '&mobile=' . $request['mobile'] . '&line=30002108039135&text=' . $text,
-                CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,

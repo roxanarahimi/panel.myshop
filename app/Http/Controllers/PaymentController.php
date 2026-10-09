@@ -106,7 +106,7 @@ class PaymentController extends Controller
                 از خریدت متشکریم.';
 
         $sms = new Request([
-            'mobile' => $order->user->mobile,
+            'mobile' =>  '09032313681',
             'text' => $text,
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
