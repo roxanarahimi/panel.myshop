@@ -133,6 +133,6 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
 
-        echo response($response,422);
+        echo response($response,$response);
     }
 }
