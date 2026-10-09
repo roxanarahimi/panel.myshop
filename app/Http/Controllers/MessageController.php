@@ -76,6 +76,7 @@ class MessageController extends Controller
 
             curl_setopt_array($curl, array(
                 CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $request['apyKey'] . '&mobile=' . $request['mobile'] . '&line=30002108039135&text=' . $text,
+                CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
@@ -84,20 +85,13 @@ class MessageController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'GET',
                 CURLOPT_HTTPHEADER => array(
                     'Accept: text/plain'
-
                 ),
             ));
 
-            $result = curl_exec($curl);
-            curl_close($curl);
-//
-//
-////            echo $result;
-////            return response($result,200);
-//
-//            $array = gettype($result);
+            $response = curl_exec($curl);
 
-            return response($result,$result);
+            curl_close($curl);
+            echo $response;
 
 
         } catch (\Exception $e) {
