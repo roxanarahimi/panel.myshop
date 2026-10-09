@@ -84,6 +84,7 @@ class MessageController extends Controller
                 CURLOPT_CUSTOMREQUEST => 'GET',
                 CURLOPT_HTTPHEADER => array(
                     'Accept: text/plain'
+
                 ),
             ));
 
@@ -96,7 +97,7 @@ class MessageController extends Controller
 //
 //            $array = gettype($result);
 
-            return response($result,$result->status);
+            return response($result,$result);
 
 
         } catch (\Exception $e) {
