@@ -96,7 +96,7 @@ class MessageController extends Controller
 //
 //            $array = gettype($result);
 
-            return response($result,422);
+            return response($result,$result->status);
 
 
         } catch (\Exception $e) {
