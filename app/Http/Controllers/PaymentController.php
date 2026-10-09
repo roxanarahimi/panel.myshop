@@ -104,15 +104,40 @@ class PaymentController extends Controller
                 سفارشت با موفقیت ثبت شد
                 شماره سفارش: '.$order->code.'
                 از خریدت متشکریم.';
-
+        $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
+        $mobile = '09032313681';
         $sms = new Request([
             'mobile' =>  '09032313681',
             'text' => $text,
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
 
-        $controller = new MessageController();
-        $sendSms = $controller->sendTextSmsIR($sms);
-        return response($sendSms, 200);
+//        $controller = new MessageController();
+//        $sendSms = $controller->sendTextSmsIR($sms);
+
+        $text = 'in yek test ast';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $apikey . '&mobile=' . $mobile . '&line=30002108039135&text=' . $text,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Accept: text/plain',
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+        return response($response, 200);
     }
 }
