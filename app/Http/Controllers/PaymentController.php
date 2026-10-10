@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
@@ -133,6 +134,17 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
 
-        echo $response=== true;
-    }
+        return $response;
+        $array = json_decode($response, true);
+
+
+        if ($response && $array['status'] === 1) {
+            $info = [
+                "messageid" => $array['data']['messageId'],
+                "message" => $array['message'],
+                "status" => $array['status'],
+                "cost" => $array['data']['cost']
+            ];
+            return response($info, 200);
+        }
 }
