@@ -109,7 +109,7 @@ class PaymentController extends Controller
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
         $text2 = str_replace(' ','%20',$text1);
-        $text = str_replace('\r','%0A',$text2);
+        $text = str_replace(["\r\n", "\r", "\n"],'%0A',$text2);
         $sms = new Request([
             'mobile' => '09032313681',
             'text' => $text,
