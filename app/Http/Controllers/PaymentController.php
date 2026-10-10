@@ -110,7 +110,6 @@ class PaymentController extends Controller
         $mobile = '09032313681';
         $text2 = str_replace(' ','%20',$text1);
         $text = str_replace('\r\n','%0A',$text2);
-        return $text;
         $sms = new Request([
             'mobile' => '09032313681',
             'text' => $text,
