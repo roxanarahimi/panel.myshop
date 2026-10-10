@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
+use function PHPUnit\Framework\exactly;
 
 class PaymentController extends Controller
 {
@@ -103,7 +104,7 @@ class PaymentController extends Controller
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
-        $text = $order->user->name . ' عزیز
+        $text = explode(' ',$order->user->name)[0] . ' عزیز
 سفارشت با موفقیت ثبت شد.
 شماره سفارش:
 ' . $order->code .'
