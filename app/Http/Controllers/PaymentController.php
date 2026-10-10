@@ -115,7 +115,7 @@ class PaymentController extends Controller
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
 
-        $text = 'in yek test ast';
+        $text = 'in11111';
         $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$apikey.'&mobile='.$mobile.'&line=30002108039135&text='.$text;
         return $url;
         $curl = curl_init();
