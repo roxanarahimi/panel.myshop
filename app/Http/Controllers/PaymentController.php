@@ -116,6 +116,8 @@ class PaymentController extends Controller
         ]);
 
         $text = str_replace(' ','%20',$text);
+        $text = str_replace('
+        ','%0A',$text);
         $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$apikey.'&mobile='.$mobile.'&line=30002108039135&text='.$text;
 //        return $url;
         $curl = curl_init();
