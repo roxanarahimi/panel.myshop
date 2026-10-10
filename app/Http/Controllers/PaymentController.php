@@ -103,7 +103,7 @@ class PaymentController extends Controller
         $order = Order::findOrFail($id);
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
-
+        return $mail;
         $text = explode(' ',$order->user->name)[0] . ' عزیز
 سفارشت با موفقیت ثبت شد.
 شماره سفارش:
@@ -131,7 +131,7 @@ rxshop.ir';
                 "cost" => $array['data']['cost']
             ];
         }
-        return response($response, 200);
+        return response($array, 200);
 
     }
 }
