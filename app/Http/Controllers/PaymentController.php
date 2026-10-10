@@ -71,24 +71,25 @@ class PaymentController extends Controller
                     "status" => 'payed',
                 ]);
 
-                $mail = Mail::to($order->user->email)
+                $mail=Mail::to($order->user->email)
                     ->send(new OrderPlacedMail($order));
+                $text = explode(' ',$order->user->name)[0] . ' عزیز
+سفارشت با موفقیت ثبت شد.
+شماره سفارش:
+' . $code .'
+از خریدت متشکریم.
+rxshop.ir';
+                $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
 
-                $text = $order->user->name . ' عزیز
-                سفارشت با موفقیت ثبت شد
-                شماره سفارش: ' . $order->code . '
-                از خریدت متشکریم.';
-
-                $sms = new Request([
+                $smsReq = new Request([
                     'mobile' => $order->user->mobile,
                     'text' => $text,
-                    'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
+                    'apiKey' => $apikey,
                 ]);
 
-                $controller = new MessageController();
-                $send = $controller->sendTextSmsIR($sms);
+                $sms = (new MessageController())->sendTextSmsIR($smsReq);
 
-                return response([$response, $mail, $send], 200);
+                return response([$response, $mail, $sms], 200);
 
             }
             return response(['message' => $response->error()->message()], $response->error()->code());
@@ -100,38 +101,6 @@ class PaymentController extends Controller
 
     public function test($id)
     {
-        $order = Order::findOrFail($id);
-        $mail = Mail::to($order->user->email)
-            ->send(new OrderPlacedMail($order));
-        return $mail;
-        $text = explode(' ',$order->user->name)[0] . ' عزیز
-سفارشت با موفقیت ثبت شد.
-شماره سفارش:
-' . $order->code .'
-از خریدت متشکریم.
-rxshop.ir';
-        $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
-        $mobile = '09032313681';
-
-        $sms = new Request([
-            'mobile' => '09032313681',
-            'text' => $text,
-            'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
-        ]);
-
-        $response = (new MessageController())->sendTextSmsIR($sms);
-
-        $array = json_decode($response, true);
-
-        if ($response && $array['status'] === 1) {
-            $info = [
-                "messageid" => $array['data']['messageId'],
-                "message" => $array['message'],
-                "status" => $array['status'],
-                "cost" => $array['data']['cost']
-            ];
-        }
-        return response($array, 200);
 
     }
 }
