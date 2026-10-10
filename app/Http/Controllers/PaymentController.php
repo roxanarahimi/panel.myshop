@@ -101,6 +101,37 @@ rxshop.ir';
 
     public function test($id)
     {
+        $order = Order::findOrFail($id);
+        Mail::to($order->user->email)
+            ->send(new OrderPlacedMail($order));
+        $text = explode(' ',$order->user->name)[0] . ' عزیز
+سفارشت با موفقیت ثبت شد.
+شماره سفارش:
+' . $order->code .'
+از خریدت متشکریم.
+rxshop.ir';
+        $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
+        $mobile = '09032313681';
+
+        $sms = new Request([
+            'mobile' => '09032313681',
+            'text' => $text,
+            'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
+        ]);
+
+        $response = (new MessageController())->sendTextSmsIR($sms);
+
+        $array = json_decode($response, true);
+
+        if ($response && $array['status'] === 1) {
+            $info = [
+                "messageid" => $array['data']['messageId'],
+                "message" => $array['message'],
+                "status" => $array['status'],
+                "cost" => $array['data']['cost']
+            ];
+        }
+        return response($array, 200);
 
     }
 }
