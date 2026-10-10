@@ -107,7 +107,9 @@ class PaymentController extends Controller
 سفارشت با موفقیت ثبت شد.
 شماره سفارش:
 ' . $order->code .'
-از خریدت متشکریم.';
+از خریدت متشکریم.
+
+https://rxshop.ir';
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
 
