@@ -103,16 +103,20 @@ class PaymentController extends Controller
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
-        $text1 = $order->user->name . ' عزیز%0Aسفارشت با موفقیت ثبت شد.%0Aشماره سفارش:' . $order->code . ' %0Aاز خریدت متشکریم.';
+        $text1 = $order->user->name . ' عزیز%0Aسفارشت با موفقیت ثبت شد.
+        شماره سفارش:' . $order->code . '
+        از خریدت متشکریم.';
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
-//        $sms = new Request([
-//            'mobile' => '09032313681',
-//            'text' => $text,
-//            'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
-//        ]);
+        $text2 = str_replace(' ','%20',$text1);
+        $text = str_replace('
+        ','%0A',$text2);
+        $sms = new Request([
+            'mobile' => '09032313681',
+            'text' => $text,
+            'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
+        ]);
 
-        $text = str_replace(' ','%20',$text1);
         $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$apikey.'&mobile='.$mobile.'&line=30002108039135&text='.$text;
 //        return $url;
         $curl = curl_init();
@@ -133,7 +137,6 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
 
-        return $response;
         $array = json_decode($response, true);
 
 

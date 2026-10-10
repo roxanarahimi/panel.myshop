@@ -70,12 +70,13 @@ class MessageController extends Controller
     {
 
         try {
-            $text = 'in yek test ast';
 
+
+            $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$request['apiKey'].'&mobile='.$request['mobile'].'&line=30002108039135&text='.$text;
+//        return $url;
             $curl = curl_init();
-
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://api.sms.ir/v1/send?username=9128222725&password=' . $request['apyKey'] . '&mobile=' . $request['mobile'] . '&line=30002108039135&text=' . $text,
+                CURLOPT_URL => $url,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -84,15 +85,14 @@ class MessageController extends Controller
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'GET',
                 CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
                     'Accept: text/plain',
-                    'x-api-key: '.$request['apyKey']
                 ),
             ));
 
             $response = curl_exec($curl);
-
             curl_close($curl);
+
+
             echo $response;
 
 
