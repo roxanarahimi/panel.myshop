@@ -103,9 +103,10 @@ class PaymentController extends Controller
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
-        $text = $order->user->name . ' عزیز%0Aسفارشت با موفقیت ثبت شد.
-        شماره سفارش:' . $order->code .'
-        از خریدت متشکریم.';
+        $text = $order->user->name . ' عزیز
+سفارشت با موفقیت ثبت شد.
+شماره سفارش: ' . $order->code .'
+از خریدت متشکریم.';
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
 
