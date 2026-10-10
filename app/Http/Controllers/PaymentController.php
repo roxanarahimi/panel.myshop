@@ -103,41 +103,21 @@ class PaymentController extends Controller
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
-        $text1 = $order->user->name . ' عزیز%0Aسفارشت با موفقیت ثبت شد.
-        شماره سفارش:' . $order->code . '
+        $text = $order->user->name . ' عزیز%0Aسفارشت با موفقیت ثبت شد.
+        شماره سفارش:' . $order->code .'
         از خریدت متشکریم.';
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
-        $text2 = str_replace(' ','%20',$text1);
-        $text = str_replace(["\r\n", "\r", "\n"],'%0A',$text2);
+
         $sms = new Request([
             'mobile' => '09032313681',
             'text' => $text,
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
 
-        $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$apikey.'&mobile='.$mobile.'&line=30002108039135&text='.$text;
-//        return $url;
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Accept: text/plain',
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        curl_close($curl);
+        $response = (new MessageController())->sendTextSmsIR($sms);
 
         $array = json_decode($response, true);
-
 
         if ($response && $array['status'] === 1) {
             $info = [
@@ -146,7 +126,8 @@ class PaymentController extends Controller
                 "status" => $array['status'],
                 "cost" => $array['data']['cost']
             ];
-            return response($info, 200);
         }
+        return response($response, 200);
+
     }
 }

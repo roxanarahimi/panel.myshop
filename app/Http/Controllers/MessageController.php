@@ -70,7 +70,8 @@ class MessageController extends Controller
     {
 
         try {
-
+            $text1 = str_replace(' ','%20',$request['text']);
+            $text = str_replace(["\r\n", "\r", "\n"],'%0A',$text1);
 
             $url = 'https://api.sms.ir/v1/send?username=9128222725&password='.$request['apiKey'].'&mobile='.$request['mobile'].'&line=30002108039135&text='.$text;
 //        return $url;
