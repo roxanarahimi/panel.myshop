@@ -41,6 +41,7 @@ class PaymentController extends Controller
             return response($exception, $exception->getCode());
         }
     }
+
     public function verifyPayment(Request $request): Response
     {
         try {
@@ -72,9 +73,9 @@ class PaymentController extends Controller
                 $mail = Mail::to($order->user->email)
                     ->send(new OrderPlacedMail($order));
 
-                $text = $order->user->name.' عزیز
+                $text = $order->user->name . ' عزیز
                 سفارشت با موفقیت ثبت شد
-                شماره سفارش: '.$order->code.'
+                شماره سفارش: ' . $order->code . '
                 از خریدت متشکریم.';
 
                 $sms = new Request([
@@ -86,7 +87,7 @@ class PaymentController extends Controller
                 $controller = new MessageController();
                 $send = $controller->sendTextSmsIR($sms);
 
-                return response([$response,$mail, $send], 200);
+                return response([$response, $mail, $send], 200);
 
             }
             return response(['message' => $response->error()->message()], $response->error()->code());
@@ -95,20 +96,21 @@ class PaymentController extends Controller
             return response(['title' => '', 'message' => $exception->getMessage(), 'data' => $exception], 500);
         }
     }
+
     public function test($id)
     {
         $order = Order::findOrFail($id);
         $mail = Mail::to($order->user->email)
             ->send(new OrderPlacedMail($order));
 
-        $text = $order->user->name.' عزیز
+        $text = $order->user->name . ' عزیز
                 سفارشت با موفقیت ثبت شد
-                شماره سفارش: '.$order->code.'
+                شماره سفارش: ' . $order->code . '
                 از خریدت متشکریم.';
         $apikey = 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y';
         $mobile = '09032313681';
         $sms = new Request([
-            'mobile' =>  '09032313681',
+            'mobile' => '09032313681',
             'text' => $text,
             'apiKey' => 'g6Tt85Fyh3r8tMaue9mBlNeOPO8x0hPIxrnbHflgyIbR9x6Y',
         ]);
@@ -147,4 +149,5 @@ class PaymentController extends Controller
             ];
             return response($info, 200);
         }
+    }
 }
